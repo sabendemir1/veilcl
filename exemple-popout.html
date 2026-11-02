@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeiLCL – Fenêtres d'action</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --canvas:#FBFAFD; --card:#fff; --border:#E6E1EE; --border-soft:#EEEAF4;
+    --ink:#241B33; --ink-2:#6B6280; --ink-3:#4A4260;
+    --p900:#2A1145; --p700:#4B1E78; --p500:#7A47B8; --p300:#CFC3E6; --p100:#F1EAFA; --p50:#F6F2FB;
+    --y:#FFC72C; --y-hover:#F5BB14; --y-tint:#FFF4CF; --y-ink:#4A3A00;
+    --high:#C8322E; --med:#D9822B; --pos:#1F8A70;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:40px 16px;background:var(--canvas);color:var(--ink);
+       font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+  .demo{max-width:900px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap}
+
+  /* ---------- buttons ---------- */
+  .btn{font:inherit;font-size:14px;padding:9px 18px;border-radius:8px;border:1px solid #D9D2E6;background:#fff;color:var(--p700);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .btn:hover{background:var(--p50)}
+  .btn:focus-visible,.tab:focus-visible,.close:focus-visible{outline:2px solid var(--p500);outline-offset:2px}
+  .btn--primary{background:var(--y);border-color:var(--y);color:var(--p900);font-weight:600}
+  .btn--primary:hover{background:var(--y-hover)}
+
+  /* ---------- dialog shell ---------- */
+  dialog.dlg{border:0;padding:0;border-radius:16px;width:min(calc(100% - 32px),var(--w,520px));
+             max-height:calc(100vh - 40px);background:var(--card);color:var(--ink);
+             box-shadow:0 24px 64px rgba(42,17,69,.28)}
+  dialog.dlg[open]{display:flex;flex-direction:column}
+  dialog.dlg::backdrop{background:rgba(42,17,69,.45);backdrop-filter:blur(2px)}
+  .dlg-head{display:flex;align-items:flex-start;gap:12px;padding:20px 24px 14px;border-bottom:1px solid var(--border-soft)}
+  .dlg-ico{width:34px;height:34px;border-radius:9px;background:var(--p700);color:var(--y);display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+  .dlg-head h2{margin:0;font-size:19px;font-weight:600;color:var(--p900);line-height:1.3}
+  .dlg-head p{margin:2px 0 0;font-size:13px;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .dlg-head .t{flex:1;min-width:0}
+  .close{border:0;background:transparent;width:34px;height:34px;border-radius:8px;color:var(--ink-2);font-size:20px;cursor:pointer;flex:none}
+  .close:hover{background:var(--p100);color:var(--p700)}
+  .dlg-body{padding:18px 24px;overflow:auto;display:flex;flex-direction:column;gap:18px}
+  .dlg-foot{display:flex;align-items:center;gap:10px;padding:14px 24px;border-top:1px solid var(--border-soft);background:#FCFBFE;border-radius:0 0 16px 16px}
+  .dlg-foot .note{flex:1;font-size:12px;color:var(--ink-2);display:flex;gap:6px;align-items:center}
+
+  /* ---------- form elements ---------- */
+  .field{display:flex;flex-direction:column;gap:6px}
+  .lbl{font-size:13px;font-weight:600;color:var(--ink-3)}
+  .lbl small{font-weight:400;color:var(--ink-2)}
+  .in,select.in,textarea.in{font:inherit;font-size:15px;color:var(--ink);background:#fff;border:1px solid #D9D2E6;border-radius:8px;padding:9px 12px;width:100%}
+  .in:focus{outline:2px solid var(--p500);outline-offset:0;border-color:var(--p500)}
+  textarea.in{resize:vertical;min-height:84px;line-height:1.5}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+  .seg{display:flex;gap:4px;background:#F1EEF6;padding:4px;border-radius:10px}
+  .seg input{position:absolute;opacity:0;pointer-events:none}
+  .seg label{flex:1;text-align:center;font-size:14px;padding:7px 10px;border-radius:7px;color:var(--ink-2);cursor:pointer}
+  .seg input:checked + label{background:#fff;color:var(--p700);font-weight:600;box-shadow:0 1px 2px rgba(42,17,69,.1)}
+  .seg input:focus-visible + label{outline:2px solid var(--p500)}
+
+  .checks{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .check{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;font-size:14px;cursor:pointer;border-top:1px solid var(--border-soft)}
+  .check:first-child{border-top:0}
+  .check:hover{background:var(--p50)}
+  .check input{accent-color:var(--p700);width:17px;height:17px;margin:2px 0 0;flex:none}
+  .check small{display:block;font-size:12px;color:var(--ink-2)}
+
+  .person{display:flex;align-items:center;gap:12px;padding:10px 12px;border-top:1px solid var(--border-soft);cursor:pointer;font-size:14px}
+  .person:first-child{border-top:0}
+  .person:hover{background:var(--p50)}
+  .person input{accent-color:var(--p700);width:17px;height:17px;flex:none}
+  .person .who{flex:1;min-width:0}
+  .person .who small{display:block;font-size:12px;color:var(--ink-2)}
+  .av{width:32px;height:32px;border-radius:50%;background:var(--p100);color:var(--p700);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex:none}
+  .av--y{background:var(--y-tint);color:var(--y-ink)}
+
+  .tag{font-size:12px;font-weight:500;padding:2px 10px;border-radius:999px;white-space:nowrap;background:var(--p100);color:var(--p700)}
+  .pills{display:flex;gap:6px;flex-wrap:wrap}
+  .pill{font-size:13px;padding:4px 6px 4px 10px;border-radius:999px;background:var(--p100);color:var(--p700);display:inline-flex;align-items:center;gap:4px}
+  .pill button{border:0;background:transparent;color:var(--p700);cursor:pointer;font-size:14px;padding:0 2px}
+  .info{display:flex;gap:8px;background:var(--y-tint);color:var(--y-ink);border-radius:8px;padding:8px 12px;font-size:13px}
+  .info i{color:var(--p700);font-size:16px;margin-top:1px}
+
+  /* ---------- note : form + preview ---------- */
+  .split{display:grid;grid-template-columns:1fr 250px;gap:22px}
+  .preview{background:var(--p50);border:1px solid var(--border);border-radius:12px;padding:14px;align-self:start;position:sticky;top:0}
+  .preview h3{margin:0 0 2px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);font-weight:600}
+  .preview .doc{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:8px}
+  .preview .doc b{display:block;font-size:14px;color:var(--p900);line-height:1.3;margin-bottom:2px}
+  .preview .doc .sub{font-size:12px;color:var(--ink-2);margin-bottom:10px}
+  .preview ol{margin:0;padding-left:18px;font-size:13px;color:var(--ink-3);display:flex;flex-direction:column;gap:6px}
+  .preview li[hidden]{display:none}
+  .preview .meta{margin-top:10px;font-size:12px;color:var(--ink-2);display:flex;gap:6px;align-items:center}
+
+  /* ---------- discussion ---------- */
+  .thread{display:flex;flex-direction:column;gap:16px}
+  .msg{display:flex;gap:10px}
+  .msg .bub{flex:1;min-width:0}
+  .msg .hd{display:flex;align-items:center;gap:8px;font-size:13px;flex-wrap:wrap}
+  .msg .hd b{font-weight:600}
+  .msg .hd span{color:var(--ink-2)}
+  .msg p{margin:3px 0 0;font-size:14px;line-height:1.55}
+  .mention{color:var(--p700);font-weight:600}
+  .compose{border:1px solid var(--border);border-radius:12px;padding:12px;background:#FCFBFE;display:flex;flex-direction:column;gap:10px}
+  .compose .in{background:#fff}
+  .types{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .types input{position:absolute;opacity:0;pointer-events:none}
+  .types label{font-size:13px;padding:4px 12px;border-radius:999px;border:1px solid var(--border);color:var(--ink-3);cursor:pointer;background:#fff}
+  .types input:checked + label{background:var(--p100);border-color:var(--p300);color:var(--p700);font-weight:600}
+  .types input:focus-visible + label{outline:2px solid var(--p500)}
+
+  /* ---------- share ---------- */
+  .linkrow{display:flex;gap:8px}
+  .linkrow .in{color:var(--ink-2);background:#F8F7FA}
+  .hint{font-size:12px;color:var(--ink-2)}
+
+  /* ---------- toast ---------- */
+  .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--p900);color:#fff;
+         padding:11px 18px;border-radius:10px;font-size:14px;display:flex;align-items:center;gap:10px;opacity:0;pointer-events:none;
+         transition:opacity .2s, transform .2s;z-index:9999}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .toast i{color:var(--y);font-size:18px}
+
+  @media (max-width:760px){
+    .split{grid-template-columns:1fr}
+    .preview{display:none}
+    .row2{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+
+<!-- Boutons de démonstration : à remplacer par vos vrais boutons -->
+<div class="demo">
+  <button class="btn btn--primary" data-open="dlg-note">Préparer une note pour le comité</button>
+  <button class="btn" data-open="dlg-assign">Assigner</button>
+  <button class="btn" data-open="dlg-discuss">Discuter</button>
+  <button class="btn" data-open="dlg-share"><i class="ti ti-send"></i>Partager</button>
+</div>
+
+
+<!-- =====================================================
+     1. PRÉPARER UNE NOTE POUR LE COMITÉ
+     ===================================================== -->
+<dialog class="dlg" id="dlg-note" style="--w:860px" aria-labelledby="t-note">
+  <div class="dlg-head">
+    <div class="dlg-ico"><i class="ti ti-file-text"></i></div>
+    <div class="t">
+      <h2 id="t-note">Préparer une note pour le comité</h2>
+      <p>La concurrence réduit son taux hypothécaire sur 20 ans</p>
+    </div>
+    <button class="close" data-close aria-label="Fermer"><i class="ti ti-x"></i></button>
+  </div>
+
+  <div class="dlg-body">
+    <div class="split">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div class="row2">
+          <div class="field">
+            <label class="lbl" for="n-comite">Comité</label>
+            <select class="in" id="n-comite">
+              <option>Comité Retail</option>
+              <option>Comité des risques</option>
+              <option>Comité de pricing</option>
+              <option>Comité exécutif</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="lbl" for="n-date">Date du comité</label>
+            <input class="in" id="n-date" type="date" value="2026-10-15">
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="lbl">Objectif de la note</span>
+          <div class="seg" role="radiogroup" aria-label="Objectif de la note">
+            <input type="radio" name="obj" id="o1" checked><label for="o1">Pour décision</label>
+            <input type="radio" name="obj" id="o2"><label for="o2">Pour information</label>
+            <input type="radio" name="obj" id="o3"><label for="o3">Pour discussion</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="lbl">Format</span>
+          <div class="seg" role="radiogroup" aria-label="Format">
+            <input type="radio" name="fmt" id="f1" checked><label for="f1">Note 1 page</label>
+            <input type="radio" name="fmt" id="f2"><label for="f2">Note détaillée</label>
+            <input type="radio" name="fmt" id="f3"><label for="f3">Slide</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="lbl">Contenu à inclure</span>
+          <div class="checks">
+            <label class="check"><input type="checkbox" data-sec="s-res" checked><span>Résumé de l'actualité<small>3 lignes et sources</small></span></label>
+            <label class="check"><input type="checkbox" data-sec="s-why" checked><span>Pourquoi c'est important pour nous</span></label>
+            <label class="check"><input type="checkbox" data-sec="s-eff" checked><span>Effets secondaires<small>Par horizon, avec signaux à surveiller</small></span></label>
+            <label class="check"><input type="checkbox" data-sec="s-rec" checked><span>Recommandations stratégiques</span></label>
+            <label class="check"><input type="checkbox" data-sec="s-src"><span>Annexe : liste des sources</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="lbl" for="n-rev">Relecteur <small>(validation avant envoi)</small></label>
+          <select class="in" id="n-rev">
+            <option>Analyste veille stratégique</option>
+            <option>Responsable Retail</option>
+            <option>Aucun, je valide moi-même</option>
+          </select>
+        </div>
+      </div>
+
+      <aside class="preview" aria-label="Aperçu du plan de la note">
+        <h3>Aperçu du plan</h3>
+        <div class="doc">
+          <b id="pv-title">Note au Comité Retail</b>
+          <div class="sub" id="pv-sub">Pour décision · 15 oct. 2026</div>
+          <ol>
+            <li id="s-res">Résumé de l'actualité</li>
+            <li id="s-why">Enjeux pour la banque</li>
+            <li id="s-eff">Effets secondaires attendus</li>
+            <li id="s-rec">Recommandations</li>
+            <li id="s-src" hidden>Annexe : sources</li>
+          </ol>
+        </div>
+        <div class="meta"><i class="ti ti-sparkles"></i>Brouillon généré par IA</div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="dlg-foot">
+    <span class="note"><i class="ti ti-shield-check"></i>Relue par un analyste avant diffusion</span>
+    <button class="btn" data-close>Annuler</button>
+    <button class="btn btn--primary" data-confirm="Brouillon en cours de génération">Générer le brouillon</button>
+  </div>
+</dialog>
+
+
+<!-- =====================================================
+     2. ASSIGNER
+     ===================================================== -->
+<dialog class="dlg" id="dlg-assign" style="--w:540px" aria-labelledby="t-assign">
+  <div class="dlg-head">
+    <div class="dlg-ico"><i class="ti ti-user-check"></i></div>
+    <div class="t">
+      <h2 id="t-assign">Assigner</h2>
+      <p>La concurrence réduit son taux hypothécaire sur 20 ans</p>
+    </div>
+    <button class="close" data-close aria-label="Fermer"><i class="ti ti-x"></i></button>
+  </div>
+
+  <div class="dlg-body">
+    <div class="field">
+      <span class="lbl">Action à assigner</span>
+      <div class="checks">
+        <label class="check"><input type="checkbox" checked><span>Simuler un alignement partiel sur le 20 ans<small>Pricing · Sous 2 semaines</small></span></label>
+        <label class="check"><input type="checkbox"><span>Sécuriser la relation avec les courtiers principaux<small>Réseau courtage · Sous 1 mois</small></span></label>
+        <label class="check"><input type="checkbox"><span>Suivre le profil des dossiers perdus<small>Risques · Suivi mensuel</small></span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="a-search">Assigner à</label>
+      <input class="in" id="a-search" type="search" placeholder="Rechercher un collaborateur ou une équipe">
+      <div class="checks" role="radiogroup" aria-label="Collaborateur">
+        <label class="person"><input type="radio" name="who" checked><span class="av">CM</span><span class="who">Claire Martin<small>Pricing Retail</small></span><span class="tag">Suggéré</span></label>
+        <label class="person"><input type="radio" name="who"><span class="av">TR</span><span class="who">Thomas Roussel<small>Risques de crédit</small></span></label>
+        <label class="person"><input type="radio" name="who"><span class="av">IB</span><span class="who">Inès Benali<small>Réseau courtage</small></span></label>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <span class="lbl">Priorité</span>
+        <div class="seg" role="radiogroup" aria-label="Priorité">
+          <input type="radio" name="prio" id="p1" checked><label for="p1">Haute</label>
+          <input type="radio" name="prio" id="p2"><label for="p2">Moyenne</label>
+          <input type="radio" name="prio" id="p3"><label for="p3">Basse</label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="lbl" for="a-date">Échéance</label>
+        <input class="in" id="a-date" type="date" value="2026-10-15">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="a-msg">Message <small>(facultatif)</small></label>
+      <textarea class="in" id="a-msg" placeholder="Contexte utile pour la personne qui reçoit la tâche"></textarea>
+    </div>
+
+    <div class="checks">
+      <label class="check"><input type="checkbox" checked><span>Notifier sur Teams</span></label>
+      <label class="check"><input type="checkbox" checked><span>Notifier par e-mail</span></label>
+    </div>
+  </div>
+
+  <div class="dlg-foot">
+    <span class="note"></span>
+    <button class="btn" data-close>Annuler</button>
+    <button class="btn btn--primary" data-confirm="Action assignée à Claire Martin">Assigner</button>
+  </div>
+</dialog>
+
+
+<!-- =====================================================
+     3. DISCUTER
+     ===================================================== -->
+<dialog class="dlg" id="dlg-discuss" style="--w:600px" aria-labelledby="t-disc">
+  <div class="dlg-head">
+    <div class="dlg-ico"><i class="ti ti-messages"></i></div>
+    <div class="t">
+      <h2 id="t-disc">Discussion</h2>
+      <p>La concurrence réduit son taux hypothécaire sur 20 ans · 2 commentaires</p>
+    </div>
+    <button class="close" data-close aria-label="Fermer"><i class="ti ti-x"></i></button>
+  </div>
+
+  <div class="dlg-body">
+    <div class="thread">
+      <div class="msg">
+        <span class="av">CM</span>
+        <div class="bub">
+          <div class="hd"><b>Claire Martin</b><span>Pricing · 10:42</span><span class="tag">Question</span></div>
+          <p>Peut-on simuler un alignement partiel dès cette semaine ? Je regarde les dossiers perdus des deux derniers mois.</p>
+        </div>
+      </div>
+      <div class="msg">
+        <span class="av av--y">TR</span>
+        <div class="bub">
+          <div class="hd"><b>Thomas Roussel</b><span>Risques · 11:05</span><span class="tag">Information</span></div>
+          <p><span class="mention">@Claire</span> le point d'antisélection est à vérifier sur les trois derniers mois avant toute décision de prix.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="compose">
+      <label class="lbl" for="d-msg" style="position:absolute;left:-9999px">Votre commentaire</label>
+      <textarea class="in" id="d-msg" placeholder="Ajouter un commentaire. Utilisez @ pour mentionner un collègue"></textarea>
+      <div class="types" role="radiogroup" aria-label="Type de commentaire">
+        <input type="radio" name="ctype" id="c1" checked><label for="c1">Information</label>
+        <input type="radio" name="ctype" id="c2"><label for="c2">Question</label>
+        <input type="radio" name="ctype" id="c3"><label for="c3">Décision</label>
+      </div>
+      <div class="field">
+        <label class="lbl" for="d-vis">Visibilité</label>
+        <select class="in" id="d-vis">
+          <option>Mon département</option>
+          <option>Départements concernés (Retail, Risques)</option>
+          <option>Tous les départements</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="dlg-foot">
+    <span class="note"><i class="ti ti-bell"></i>Les personnes mentionnées sont notifiées</span>
+    <button class="btn" data-close>Fermer</button>
+    <button class="btn btn--primary" data-confirm="Commentaire publié">Publier</button>
+  </div>
+</dialog>
+
+
+<!-- =====================================================
+     4. PARTAGER
+     ===================================================== -->
+<dialog class="dlg" id="dlg-share" style="--w:500px" aria-labelledby="t-share">
+  <div class="dlg-head">
+    <div class="dlg-ico"><i class="ti ti-send"></i></div>
+    <div class="t">
+      <h2 id="t-share">Partager</h2>
+      <p>La concurrence réduit son taux hypothécaire sur 20 ans</p>
+    </div>
+    <button class="close" data-close aria-label="Fermer"><i class="ti ti-x"></i></button>
+  </div>
+
+  <div class="dlg-body">
+    <div class="field">
+      <label class="lbl" for="s-to">Destinataires</label>
+      <input class="in" id="s-to" type="text" placeholder="Nom, équipe ou canal Teams">
+      <div class="pills" aria-label="Destinataires sélectionnés">
+        <span class="pill">Équipe Pricing<button aria-label="Retirer Équipe Pricing"><i class="ti ti-x"></i></button></span>
+        <span class="pill">Thomas Roussel<button aria-label="Retirer Thomas Roussel"><i class="ti ti-x"></i></button></span>
+        <span class="pill">Canal Teams · Veille Retail<button aria-label="Retirer le canal Teams"><i class="ti ti-x"></i></button></span>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="lbl">Contenu partagé</span>
+      <div class="checks">
+        <label class="check"><input type="checkbox" checked><span>Résumé et « Pourquoi c'est important pour nous »</span></label>
+        <label class="check"><input type="checkbox" checked><span>Effets secondaires</span></label>
+        <label class="check"><input type="checkbox"><span>Recommandations stratégiques</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="lbl" for="s-msg">Message <small>(facultatif)</small></label>
+      <textarea class="in" id="s-msg" placeholder="Pourquoi vous partagez cette actualité"></textarea>
+    </div>
+
+    <div class="field">
+      <span class="lbl">Lien interne</span>
+      <div class="linkrow">
+        <input class="in" id="s-link" type="text" value="https://veilcl.intranet/news/20-ans-taux-concurrent" readonly aria-label="Lien interne">
+        <button class="btn" id="copy"><i class="ti ti-copy"></i>Copier</button>
+      </div>
+      <span class="hint">Seuls les collaborateurs autorisés peuvent ouvrir ce lien.</span>
+    </div>
+
+    <div class="info"><i class="ti ti-lock"></i><span>Usage interne uniquement. Les articles sous licence sont partagés par lien, jamais en texte intégral.</span></div>
+  </div>
+
+  <div class="dlg-foot">
+    <span class="note"></span>
+    <button class="btn" data-close>Annuler</button>
+    <button class="btn btn--primary" data-confirm="Actualité partagée">Partager</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><i class="ti ti-circle-check"></i><span id="toast-msg"></span></div>
+
+<script>
+  const toast = document.getElementById('toast'), toastMsg = document.getElementById('toast-msg');
+  let t;
+  function notify(m){ toastMsg.textContent = m; toast.classList.add('show'); clearTimeout(t); t = setTimeout(()=>toast.classList.remove('show'), 2800); }
+
+  document.querySelectorAll('[data-open]').forEach(b =>
+    b.addEventListener('click', () => document.getElementById(b.dataset.open).showModal()));
+
+  document.querySelectorAll('dialog').forEach(d => {
+    d.addEventListener('click', e => { if (e.target === d) d.close(); });          // clic sur le fond
+    d.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', () => d.close()));
+    d.querySelectorAll('[data-confirm]').forEach(b => b.addEventListener('click', () => { d.close(); notify(b.dataset.confirm); }));
+  });
+
+  // Note : l'aperçu du plan suit les choix
+  document.querySelectorAll('#dlg-note [data-sec]').forEach(c =>
+    c.addEventListener('change', () => { document.getElementById(c.dataset.sec).hidden = !c.checked; }));
+  const sel = document.getElementById('n-comite'), pvTitle = document.getElementById('pv-title');
+  sel.addEventListener('change', () => pvTitle.textContent = 'Note au ' + sel.value);
+  const pvSub = document.getElementById('pv-sub');
+  function updSub(){
+    const obj = document.querySelector('#dlg-note input[name=obj]:checked + label').textContent;
+    const d = new Date(document.getElementById('n-date').value);
+    pvSub.textContent = obj + ' · ' + (isNaN(d) ? '' : d.toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'}));
+  }
+  document.querySelectorAll('#dlg-note input[name=obj], #n-date').forEach(i => i.addEventListener('change', updSub));
+
+  // Partager : copier le lien
+  document.getElementById('copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(document.getElementById('s-link').value); notify('Lien copié'); }
+    catch { document.getElementById('s-link').select(); }
+  });
+  // Partager : retirer un destinataire
+  document.querySelectorAll('.pill button').forEach(b => b.addEventListener('click', () => b.parentElement.remove()));
+</script>
+</body>
+</html>

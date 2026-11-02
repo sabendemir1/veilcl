@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeiLCL – Fil d'actualités</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --canvas:#FBFAFD; --card:#fff; --border:#E6E1EE; --border-soft:#EEEAF4;
+    --ink:#241B33; --ink-2:#6B6280; --ink-3:#4A4260;
+    --p900:#2A1145; --p700:#4B1E78; --p500:#7A47B8; --p300:#CFC3E6; --p100:#F1EAFA; --p50:#F6F2FB;
+    --y:#FFC72C; --y-tint:#FFF4CF; --y-ink:#4A3A00;
+    --high:#C8322E; --high-bg:#FBE6E5; --high-ink:#8E2320;
+    --med:#D9822B; --med-bg:#FCEBD8; --med-ink:#8A4B0E;
+    --pos:#1F8A70; --pos-bg:#DDF3EC; --pos-ink:#14604D;
+    --low:#9A93AB;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:32px 16px 64px;background:var(--canvas);color:var(--ink);
+       font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+  .wrap{max-width:860px;margin:0 auto}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tabs{display:flex;gap:4px;background:#F1EEF6;padding:4px;border-radius:10px}
+  .tab{font:inherit;font-size:14px;padding:6px 14px;border:0;border-radius:7px;background:transparent;color:var(--ink-2);cursor:pointer}
+  .tab.on{background:#fff;color:var(--p700);font-weight:600;box-shadow:0 1px 2px rgba(42,17,69,.08)}
+  .spacer{flex:1}
+  .chip{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;
+        border:1px solid var(--border);background:#fff;color:var(--ink-3);cursor:pointer}
+  .chip:hover{border-color:var(--p300)}
+  .chip i{font-size:15px;color:var(--p700)}
+
+  .day{font-size:13px;font-weight:600;color:var(--ink-2);letter-spacing:.02em;margin:20px 0 10px}
+
+  /* ---------- feed card ---------- */
+  .item{position:relative;display:block;background:var(--card);border:1px solid var(--border);border-radius:14px;
+        padding:18px 22px 14px 26px;margin-bottom:12px;color:inherit;text-decoration:none;
+        transition:border-color .15s, box-shadow .15s}
+  .item:hover{border-color:var(--p300);box-shadow:0 4px 16px rgba(75,30,120,.08)}
+  .item:focus-visible{outline:2px solid var(--p500);outline-offset:2px}
+  .item::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;background:var(--stripe,var(--low))}
+  .item[data-impact="high"]{--stripe:var(--high)}
+  .item[data-impact="med"]{--stripe:var(--med)}
+  .item[data-impact="pos"]{--stripe:var(--pos)}
+
+  .top{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+  .unread{width:8px;height:8px;border-radius:50%;background:var(--p500);flex:none}
+  .tag{font-size:12px;font-weight:500;padding:2px 10px;border-radius:999px;white-space:nowrap}
+  .tag--high{background:var(--high-bg);color:var(--high-ink)}
+  .tag--med{background:var(--med-bg);color:var(--med-ink)}
+  .tag--pos{background:var(--pos-bg);color:var(--pos-ink)}
+  .tag--info{background:#EFEDF3;color:var(--ink-3)}
+  .tag--topic{background:var(--p100);color:var(--p700)}
+  .time{font-size:13px;color:var(--ink-2);white-space:nowrap}
+
+  .headline{margin:0 0 6px;font-size:20px;line-height:1.3;font-weight:600;color:var(--p900);letter-spacing:-.005em}
+  .item:hover .headline{color:var(--p700)}
+  .excerpt{margin:0 0 12px;font-size:15px;line-height:1.6;color:var(--ink-2);
+           display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  .why{display:flex;align-items:flex-start;gap:8px;background:var(--y-tint);border-radius:8px;padding:8px 12px;
+       font-size:14px;line-height:1.5;color:var(--y-ink);margin-bottom:12px}
+  .why i{font-size:16px;color:var(--p700);margin-top:2px;flex:none}
+  .why b{color:var(--p700);font-weight:600}
+
+  .foot{display:flex;align-items:center;gap:14px;padding-top:10px;border-top:1px solid var(--border-soft);flex-wrap:wrap}
+  .source{font-size:13px;color:var(--ink-3);font-weight:500}
+  .source span{color:var(--ink-2);font-weight:400}
+  .score{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-2)}
+  .score .m{width:44px;height:5px;border-radius:3px;background:#F1EEF6;overflow:hidden}
+  .score .m>i{display:block;height:100%;background:var(--p500);width:var(--v)}
+  .score b{color:var(--ink);font-weight:600}
+  .depts{display:flex;gap:6px}
+  .dept{font-size:12px;padding:2px 8px;border-radius:6px;background:var(--p50);color:var(--p700);font-weight:500}
+  .acts{display:flex;gap:4px}
+  .acts button{border:0;background:transparent;width:32px;height:32px;border-radius:8px;color:var(--p700);font-size:18px;cursor:pointer}
+  .acts button:hover{background:var(--p100)}
+
+  @media (max-width:640px){
+    .item{padding:16px 16px 12px 20px}
+    .headline{font-size:18px}
+    .foot{gap:10px}
+    .score{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="toolbar">
+    <div class="tabs" role="tablist">
+      <button class="tab on" role="tab">Pour moi</button>
+      <button class="tab" role="tab">Tout</button>
+      <button class="tab" role="tab">Non lus</button>
+    </div>
+    <span class="spacer"></span>
+    <button class="chip"><i class="ti ti-tag"></i>Thème</button>
+    <button class="chip"><i class="ti ti-flame"></i>Impact</button>
+    <button class="chip"><i class="ti ti-calendar"></i>7 jours</button>
+    <button class="chip"><i class="ti ti-arrows-sort"></i>Pertinence</button>
+  </div>
+
+  <div class="day">AUJOURD'HUI</div>
+
+  <!-- Carte 1 : impact élevé, non lue -->
+  <a class="item" href="#" data-impact="high">
+    <div class="top">
+      <span class="unread" title="Non lu"></span>
+      <span class="tag tag--high">Impact élevé</span>
+      <span class="tag tag--topic">Crédit immobilier</span>
+      <span class="tag tag--info">Menace</span>
+      <span class="spacer"></span>
+      <span class="time">il y a 2 h</span>
+    </div>
+    <h2 class="headline">La concurrence réduit son taux hypothécaire sur 20 ans</h2>
+    <p class="excerpt">Un concurrent direct vient d'afficher un taux sur 20 ans inférieur de 25 points de base à notre grille actuelle, ce qui replace notre positionnement tarifaire sous surveillance sur un segment porteur.</p>
+    <div class="why"><i class="ti ti-bulb"></i><span><b>Pour nous :</b> notre offre à 20 ans se situe désormais 25 pb au-dessus du marché.</span></div>
+    <div class="foot">
+      <span class="source">Les Echos <span>· Reuters · +1</span></span>
+      <span class="score">Pertinence <span class="m"><i style="--v:92%"></i></span><b>92</b></span>
+      <span class="score">Fiabilité <span class="m"><i style="--v:88%"></i></span><b>88</b></span>
+      <span class="depts"><span class="dept">Retail</span><span class="dept">Risques</span></span>
+      <span class="spacer"></span>
+      <span class="acts">
+        <button aria-label="Enregistrer"><i class="ti ti-bookmark"></i></button>
+        <button aria-label="Partager"><i class="ti ti-send"></i></button>
+      </span>
+    </div>
+  </a>
+
+  <!-- Carte 2 : impact moyen, non lue -->
+  <a class="item" href="#" data-impact="med">
+    <div class="top">
+      <span class="unread" title="Non lu"></span>
+      <span class="tag tag--med">Impact moyen</span>
+      <span class="tag tag--topic">Réglementation</span>
+      <span class="tag tag--info">À suivre</span>
+      <span class="spacer"></span>
+      <span class="time">il y a 5 h</span>
+    </div>
+    <h2 class="headline">Le régulateur ouvre une consultation sur l'usage de l'IA dans l'octroi de crédit</h2>
+    <p class="excerpt">Le document propose d'encadrer l'explicabilité des modèles de scoring et la supervision humaine des décisions automatisées. Les réponses sont attendues d'ici mi-novembre.</p>
+    <div class="why"><i class="ti ti-bulb"></i><span><b>Pour nous :</b> nos modèles de scoring crédit seront concernés, avec une échéance de réponse à planifier.</span></div>
+    <div class="foot">
+      <span class="source">Régulateur <span>· Option Finance</span></span>
+      <span class="score">Pertinence <span class="m"><i style="--v:81%"></i></span><b>81</b></span>
+      <span class="score">Fiabilité <span class="m"><i style="--v:96%"></i></span><b>96</b></span>
+      <span class="depts"><span class="dept">Compliance</span><span class="dept">Risques</span></span>
+      <span class="spacer"></span>
+      <span class="acts">
+        <button aria-label="Enregistrer"><i class="ti ti-bookmark"></i></button>
+        <button aria-label="Partager"><i class="ti ti-send"></i></button>
+      </span>
+    </div>
+  </a>
+
+  <div class="day">HIER</div>
+
+  <!-- Carte 3 : opportunité, déjà lue -->
+  <a class="item" href="#" data-impact="pos">
+    <div class="top">
+      <span class="tag tag--pos">Opportunité</span>
+      <span class="tag tag--topic">Fintech</span>
+      <span class="spacer"></span>
+      <span class="time">hier, 16:40</span>
+    </div>
+    <h2 class="headline">Une néobanque européenne lance un assistant IA pour les PME</h2>
+    <p class="excerpt">L'outil automatise le rapprochement bancaire et les relances de factures, avec un déploiement progressif sur plusieurs pays d'ici la fin de l'année.</p>
+    <div class="why"><i class="ti ti-bulb"></i><span><b>Pour nous :</b> piste de partenariat ou de service équivalent pour notre clientèle professionnelle.</span></div>
+    <div class="foot">
+      <span class="source">Maddyness <span>· Sifted</span></span>
+      <span class="score">Pertinence <span class="m"><i style="--v:67%"></i></span><b>67</b></span>
+      <span class="score">Fiabilité <span class="m"><i style="--v:79%"></i></span><b>79</b></span>
+      <span class="depts"><span class="dept">Pro &amp; Entreprises</span><span class="dept">Innovation</span></span>
+      <span class="spacer"></span>
+      <span class="acts">
+        <button aria-label="Enregistrer"><i class="ti ti-bookmark"></i></button>
+        <button aria-label="Partager"><i class="ti ti-send"></i></button>
+      </span>
+    </div>
+  </a>
+
+  <!-- Carte 4 : information, déjà lue -->
+  <a class="item" href="#" data-impact="low">
+    <div class="top">
+      <span class="tag tag--info">Information</span>
+      <span class="tag tag--topic">FinAI</span>
+      <span class="spacer"></span>
+      <span class="time">hier, 09:15</span>
+    </div>
+    <h2 class="headline">Les grandes banques accélèrent sur les agents IA en conformité</h2>
+    <p class="excerpt">Plusieurs établissements annoncent des pilotes d'agents autonomes pour la revue de dossiers KYC et la surveillance des transactions.</p>
+    <div class="foot">
+      <span class="source">Financial Times <span>· +2</span></span>
+      <span class="score">Pertinence <span class="m"><i style="--v:54%"></i></span><b>54</b></span>
+      <span class="score">Fiabilité <span class="m"><i style="--v:90%"></i></span><b>90</b></span>
+      <span class="depts"><span class="dept">Compliance</span></span>
+      <span class="spacer"></span>
+      <span class="acts">
+        <button aria-label="Enregistrer"><i class="ti ti-bookmark"></i></button>
+        <button aria-label="Partager"><i class="ti ti-send"></i></button>
+      </span>
+    </div>
+  </a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,2341 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VeiLCL</title>
+    <meta
+      name="description"
+      content="VeiLCL — a premium landing page foundation."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body id="top">
+    <div class="page-bg"></div>
+
+    <header class="topbar is-app-active">
+      <nav class="nav container" aria-label="Main navigation">
+        <a class="brand-wrap brand-link" href="#top" aria-label="Retour à l'accueil VEILCL’IA" data-home-link>
+          <div class="brand-mark">V</div>
+          <span class="brand-name">VEILCL</span>
+        </a>
+
+        <div class="nav-links">
+          <a href="#" data-show-cards>Page principale</a>
+          <div class="nav-dropdown">
+            <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="news-sector-menu" data-news-menu-toggle>Actualités</button>
+            <div class="nav-dropdown-menu" id="news-sector-menu">
+              <a href="#empty-card" data-sector-filter="Finance">Finance</a>
+              <a href="#empty-card" data-sector-filter="Fintech">Fintech</a>
+              <a href="#empty-card" data-sector-filter="FinAI">FinAI</a>
+            </div>
+          </div>
+        </div>
+
+        <form class="header-search" role="search" action="#empty-card" method="get">
+          <label class="visually-hidden" for="header-search">Rechercher dans les sources</label>
+          <svg class="header-search-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <path d="m16 16 4 4"></path>
+          </svg>
+          <input id="header-search" name="q" type="search" placeholder="Ask or search across sources" autocomplete="off" data-header-search />
+          <button class="search-clear" type="button" aria-label="Effacer la recherche" data-search-clear hidden>&times;</button>
+        </form>
+
+        <span class="scan-status" role="status" aria-label="Last scan, 45 minutes ago">
+          <span class="scan-status-dot" aria-hidden="true"></span>
+          <span class="scan-status-label">Last scan · 45 min ago</span>
+          <span class="scan-status-short" aria-hidden="true">45 min</span>
+        </span>
+
+        <div class="nav-actions">
+          <a class="nav-cta" href="#dashboard" data-launch-app aria-label="Launch">Launch</a>
+          <button class="notification-button" type="button" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+              <path d="M10 21h4"></path>
+            </svg>
+            <span class="notification-dot"></span>
+          </button>
+          <div class="profile-menu" data-profile-menu>
+            <button class="profile-avatar" type="button" aria-label="Ouvrir le menu de Demir" aria-expanded="false" aria-controls="profile-menu-popover" data-profile-menu-toggle>DM</button>
+            <div class="profile-menu-popover" id="profile-menu-popover" aria-label="Menu du profil">
+              <div class="profile-menu-identity">
+                <span class="profile-menu-initials" aria-hidden="true">DM</span>
+                <span><strong>Demir</strong><small>Profil VeiLCL</small></span>
+              </div>
+              <button class="profile-menu-personalization" type="button" data-profile-personalization>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9m4 0h3M4 17h3m4 0h9"></path><circle cx="15" cy="7" r="2"></circle><circle cx="9" cy="17" r="2"></circle></svg>
+                <span><strong>Personnalisation</strong><small>Votre rôle et les sujets suivis</small></span>
+                <svg class="profile-menu-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+              </button>
+              <button class="profile-menu-personalization" type="button" data-open-newsletter>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
+                <span><strong>Newsletter</strong><small>Abonnez-vous à la newsletter</small></span>
+                <svg class="profile-menu-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+              </button>
+              <div class="profile-menu-divider" role="separator"></div>
+              <button class="profile-menu-personalization profile-menu-signout" type="button" data-profile-signout>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5m5 5H3m9-9h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"></path></svg>
+                <span><strong>Se déconnecter</strong></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-shell container is-dashboard" aria-label="Espace VeiLCL">
+      <section class="welcome-panel" aria-labelledby="welcome-title" hidden>
+        <div class="welcome-copy">
+          <p class="eyebrow">Bienvenue</p>
+          <h1 id="welcome-title">VeiLCL</h1>
+          <p class="lead">
+            Espace interne de veille stratégique de la banque LCL, pensé pour
+            suivre les signaux forts du secteur Finance, Fintech et FinAI.
+          </p>
+          <p>
+            Ce site a pour vocation de centraliser les informations essentielles,
+            les tendances du marché et les actualités sectorielles afin de mieux
+            comprendre les évolutions du paysage financier et technologique.
+          </p>
+          <p>
+            Il est conçu pour un usage interne, afin d’aider les équipes à
+            repérer rapidement les mouvements significatifs, les innovations et
+            les sujets à fort impact dans la finance, la fintech et l’intelligence
+            artificielle appliquée au secteur.
+          </p>
+          <p>
+            VeiLCL permet aussi d’évaluer l’importance des actualités par
+            département, d’attribuer des scores de pertinence et de fiabilité,
+            ainsi que de formuler des recommandations stratégiques utiles pour
+            guider les décisions métier et d’orientation.
+          </p>
+        </div>
+
+        <div class="welcome-side" aria-label="VeiLCL overview details">
+          <div class="info-card">
+            <span class="card-label">Usage interne</span>
+            <strong>LCL</strong>
+          </div>
+
+          <div class="info-card">
+            <span class="card-label">Focus</span>
+            <strong>Finance • Fintech • FinAI</strong>
+          </div>
+
+          <div class="info-card">
+            <span class="card-label">Type de contenu</span>
+            <strong>Signaux forts & actualités</strong>
+          </div>
+        </div>
+
+        <div class="welcome-footer">
+          <button class="welcome-start-button" type="button" data-open-personalization>
+            Commencer
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="personalization-panel" data-personalization-panel hidden aria-labelledby="personalization-title">
+        <button class="personalization-back news-action news-action-primary" type="button" data-back-welcome>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6"></path></svg>
+          Retour à VEILCL’IA
+        </button>
+
+        <header class="personalization-heading">
+          <p class="eyebrow">Votre espace, à votre façon</p>
+          <h1 id="personalization-title">Personnalisation</h1>
+          <p>Ajustez votre profil et les sujets qui composent votre veille.</p>
+        </header>
+
+        <section class="profile-preferences" aria-labelledby="profile-preferences-title">
+          <div class="preferences-heading">
+            <div>
+              <p class="eyebrow">Pour personnaliser votre fil</p>
+              <h2 id="profile-preferences-title" tabindex="-1">Parlez-nous de votre rôle</h2>
+              <p>Ces préférences restent modifiables et sont enregistrées sur cet appareil.</p>
+            </div>
+            <span class="preference-count" data-preference-count aria-live="polite">0 sujet sélectionné</span>
+          </div>
+
+          <div class="profile-fields">
+            <label class="profile-field">
+              <span>Votre rôle</span>
+              <input type="text" maxlength="80" placeholder="Ex. Responsable stratégie et transformation" data-profile-role />
+            </label>
+            <label class="profile-field">
+              <span>Vos priorités du moment</span>
+              <input type="text" maxlength="160" placeholder="Ex. Accélérer les paiements et accompagner les équipes" data-profile-context />
+            </label>
+          </div>
+
+          <div class="interest-groups">
+            <fieldset class="interest-group">
+              <legend>Banque & finance</legend>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Banque de détail">Banque de détail</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Banque d’entreprise">Banque d’entreprise</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Crédit & financement">Crédit & financement</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Épargne & investissement">Épargne & investissement</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Assurance">Assurance</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Trésorerie">Trésorerie</button>
+            </fieldset>
+            <fieldset class="interest-group">
+              <legend>Paiements & commerce</legend>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Paiements instantanés">Paiements instantanés</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Cartes & portefeuilles numériques">Cartes & portefeuilles numériques</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Open banking">Open banking</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Paiements transfrontaliers">Paiements transfrontaliers</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="E-commerce">E-commerce</button>
+            </fieldset>
+            <fieldset class="interest-group">
+              <legend>Innovation & technologies</legend>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="IA générative">IA générative</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="IA agentique">IA agentique</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Automatisation">Automatisation</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Données & analytique">Données & analytique</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Cloud & API">Cloud & API</button>
+            </fieldset>
+            <fieldset class="interest-group">
+              <legend>Risques & réglementation</legend>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Réglementation européenne">Réglementation européenne</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Conformité & LCB-FT">Conformité & LCB-FT</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Fraude & cybersécurité">Fraude & cybersécurité</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Risque de crédit">Risque de crédit</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Protection des données">Protection des données</button>
+            </fieldset>
+            <fieldset class="interest-group">
+              <legend>Clients & écosystème</legend>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Expérience client">Expérience client</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Distribution & partenariats">Distribution & partenariats</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Fintech & concurrence">Fintech & concurrence</button>
+              <button type="button" class="interest-chip" aria-pressed="false" data-interest="Finance durable">Finance durable</button>
+            </fieldset>
+          </div>
+
+          <div class="preferences-footer">
+            <span role="status" data-preference-status></span>
+            <div>
+              <button class="preferences-save" type="button" data-save-preferences>Enregistrer mes préférences</button>
+              <button class="preferences-continue" type="button" data-continue-to-feed>
+                Voir mon fil
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"></path></svg>
+              </button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <div class="dashboard-layout" data-dashboard>
+        <aside class="dashboard-sidebar" aria-label="Navigation principale">
+          <nav class="sidebar-nav">
+            <button class="sidebar-link" type="button" data-sidebar-home>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5.5 9v11h13V9M9.5 20v-7h5v7"></path></svg>
+              <span>Page principale</span>
+            </button>
+            <button class="sidebar-link" type="button" data-sidebar-news aria-expanded="false" aria-controls="sidebar-news-menu">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v15H4zM8 9h8M8 13h8M8 17h5"></path></svg>
+              <span>Actualités</span>
+              <svg class="sidebar-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"></path></svg>
+            </button>
+            <div class="sidebar-submenu" id="sidebar-news-menu">
+              <button class="sidebar-sublink" type="button" data-sector-filter="Finance">Finance</button>
+              <button class="sidebar-sublink" type="button" data-sector-filter="Fintech">Fintech</button>
+              <button class="sidebar-sublink" type="button" data-sector-filter="FinAI">FinAI</button>
+            </div>
+            <button class="sidebar-link" type="button" data-sidebar-view="En tendance">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 6-6 4 4 8-9M14 6h7v7"></path></svg>
+              <span>En tendance</span>
+            </button>
+            <button class="sidebar-link" type="button" data-sidebar-view="Alertes">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 13h7l-1 9 10-13h-7z"></path></svg>
+              <span>Alertes</span>
+            </button>
+            <button class="sidebar-link" type="button" data-sidebar-view="Réglementation">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M5 6h14M7 6l-4 8h8L7 6Zm10 0-4 8h8l-4-8ZM5 21h14"></path></svg>
+              <span>Réglementation</span>
+            </button>
+            <button class="sidebar-link" type="button" data-sidebar-view="Enregistrés">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16l-6-4z"></path></svg>
+              <span>Enregistrés</span>
+            </button>
+            <button class="sidebar-link" type="button" data-sidebar-view="Briefings">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6zM15 3v5h4M9 12h7M9 16h7"></path></svg>
+              <span>Briefings</span>
+            </button>
+            <button class="sidebar-link" type="button" data-sidebar-view="Magazine">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.5h16v17H4zM8 7.5h8M8 11.5h8M8 15.5h5"></path></svg>
+              <span>Magazine</span>
+            </button>
+          </nav>
+          <button class="sidebar-ai-card is-active" type="button" aria-current="page" aria-label="Ouvrir VEILCL’IA" data-open-ai-preferences>
+            <span class="sidebar-ai-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Zm7 12 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"></path></svg>
+            </span>
+            <span class="sidebar-ai-label">VEILCL’IA</span>
+          </button>
+        </aside>
+
+        <div class="dashboard-content">
+      <section class="ai-view" data-ai-view aria-labelledby="ai-title">
+        <header class="ai-welcome">
+          <p class="ai-eyebrow">Votre assistant VeiLCL</p>
+          <h1 id="ai-title">Bonjour Demir</h1>
+          <p>Qu’aimeriez-vous comprendre aujourd’hui&nbsp;?</p>
+        </header>
+        <form class="welcome-prompt-card" data-profile-form>
+          <div class="prompt-card-heading">
+            <span class="prompt-sparkle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3Zm7 12 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"></path></svg></span>
+            <div>
+              <strong>Votre question à VEILCL’IA</strong>
+              <span>Finance, fintech, innovation : que souhaitez-vous explorer&nbsp;?</span>
+            </div>
+          </div>
+          <label class="visually-hidden" for="ai-prompt">Votre question à VEILCL’IA</label>
+          <textarea id="ai-prompt" rows="2" placeholder="Ex. Quelles tendances transforment les paiements instantanés ?" data-profile-prompt required></textarea>
+          <div class="prompt-card-footer">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5m0-8h.01"></path></svg> Votre demande guidera votre veille</span>
+            <button class="prompt-submit" type="submit" aria-label="Lancer ma veille" title="Lancer ma veille">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"></path></svg>
+            </button>
+          </div>
+        </form>
+      </section>
+      <section class="alerts-view" data-alert-view hidden aria-labelledby="alerts-title">
+        <header class="alerts-heading">
+          <div>
+            <p class="alerts-eyebrow">Votre équipe vous sollicite</p>
+            <h1 id="alerts-title">Alertes</h1>
+          </div>
+          <p class="alerts-count" data-alert-count>3 alertes à traiter</p>
+        </header>
+        <div class="alerts-grid" data-alert-list>
+          <article class="alert-card" data-alert-id="alert-claire-wero" tabindex="0">
+            <header class="alert-card-top">
+              <div class="alert-person"><span class="alert-avatar">CM</span><span><strong>Claire Martin</strong><small>Pricing Retail</small></span></div>
+              <div class="alert-card-timing">
+                <time class="alert-time">Il y a 14 min</time>
+                <span class="alert-priority-pill is-high">Priorité Haute</span>
+              </div>
+            </header>
+            <p class="alert-kicker">VOUS A MENTIONNÉ</p>
+            <h2>Peux-tu vérifier le positionnement de Wero ?</h2>
+            <p class="alert-message">Le nouveau réseau européen peut changer nos repères sur les paiements. Quel impact vois-tu pour nos offres ?</p>
+            <a class="alert-article-link" href="#empty-card" data-alert-news="news-european-payments-network">Cinq réseaux créent une entité de paiement européenne <span aria-hidden="true">↗</span></a>
+            <button class="alert-done-button" type="button" data-alert-done aria-pressed="false"><i class="ti ti-check" aria-hidden="true"></i><span>Indiquer comme fait</span></button>
+          </article>
+          <article class="alert-card" data-alert-id="alert-thomas-mica" tabindex="0">
+            <header class="alert-card-top">
+              <div class="alert-person"><span class="alert-avatar">TR</span><span><strong>Thomas Roussel</strong><small>Risques de crédit</small></span></div>
+              <div class="alert-card-timing">
+                <time class="alert-time">Il y a 1 h</time>
+                <span class="alert-priority-pill is-medium">Priorité Moyenne</span>
+              </div>
+            </header>
+            <p class="alert-kicker">VOUS A MENTIONNÉ</p>
+            <h2>Un regard sur les clarifications MiCA ?</h2>
+            <p class="alert-message">L’ESMA précise son périmètre sur la DeFi et le staking. Peux-tu repérer les principaux risques pour notre veille ?</p>
+            <a class="alert-article-link" href="#empty-card" data-alert-news="news-esma-mica">L’ESMA propose de faire évoluer MiCA <span aria-hidden="true">↗</span></a>
+            <button class="alert-done-button" type="button" data-alert-done aria-pressed="false"><i class="ti ti-check" aria-hidden="true"></i><span>Indiquer comme fait</span></button>
+          </article>
+          <article class="alert-card" data-alert-id="alert-ines-banking" tabindex="0">
+            <header class="alert-card-top">
+              <div class="alert-person"><span class="alert-avatar">IB</span><span><strong>Inès Benali</strong><small>Réseau courtage</small></span></div>
+              <div class="alert-card-timing">
+                <time class="alert-time">Il y a 3 h</time>
+                <span class="alert-priority-pill is-low">Priorité Basse</span>
+              </div>
+            </header>
+            <p class="alert-kicker">VOUS A MENTIONNÉ</p>
+            <h2>Que change le lancement de Pay by Bank ?</h2>
+            <p class="alert-message">Brite accélère au Royaume-Uni. As-tu un point de comparaison utile pour nos échanges avec les courtiers ?</p>
+            <a class="alert-article-link" href="#empty-card" data-alert-news="news-brite-uk">Brite lance Pay by Bank au Royaume-Uni <span aria-hidden="true">↗</span></a>
+            <button class="alert-done-button" type="button" data-alert-done aria-pressed="false"><i class="ti ti-check" aria-hidden="true"></i><span>Indiquer comme fait</span></button>
+          </article>
+        </div>
+        <template data-alert-assignment-template>
+          <article class="alert-card alert-card--assignment" data-assignment-alert tabindex="0">
+            <header class="alert-card-top">
+              <div class="alert-person"><span class="alert-avatar" data-alert-avatar></span><span><strong data-alert-person></strong><small data-alert-team></small></span></div>
+              <div class="alert-card-timing">
+                <time class="alert-time" data-alert-time></time>
+                <span class="alert-priority-pill" data-alert-priority></span>
+              </div>
+            </header>
+            <p class="alert-kicker">ACTION ASSIGNÉE À VOUS</p>
+            <h2 data-alert-title></h2>
+            <p class="alert-message" data-alert-message></p>
+            <a class="alert-article-link" href="#empty-card" data-alert-news hidden></a>
+            <button class="alert-done-button" type="button" data-alert-done aria-pressed="false"><i class="ti ti-check" aria-hidden="true"></i><span>Indiquer comme fait</span></button>
+          </article>
+        </template>
+      </section>
+      <section id="empty-card" class="signal-board" aria-label="Signal cards board" hidden>
+        <div class="board-heading">
+          <div class="board-heading-title">
+            <p class="eyebrow" data-board-label>Veille stratégique</p>
+            <div class="board-title-row">
+              <h2 data-board-title>Toutes les actualités</h2>
+              <div class="board-tabs" role="tablist" aria-label="Filtrer les actualités" data-active="all">
+                <button class="board-tab is-active" type="button" role="tab" aria-selected="true" data-view="all">Tout</button>
+                <button class="board-tab" type="button" role="tab" aria-selected="false" data-view="unread">Non lus</button>
+              </div>
+            </div>
+          </div>
+          <div class="board-filters" role="toolbar" aria-label="Filtres d’actualités">
+            <button class="board-filter" type="button" aria-label="Thème" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13 13 20 3 10V3h7l10 10Z"></path><circle cx="7.5" cy="7.5" r="1"></circle></svg>
+              <span>Thème</span>
+            </button>
+            <button class="board-filter" type="button" aria-label="Trier par impact" aria-pressed="false" data-sort="impact">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c4.4 0 7-3.1 7-7.1 0-3.2-1.8-5.5-4.4-8.1.1 2.4-.8 3.4-1.8 4.1C12.1 7.4 10.4 4.4 7 2c.5 4.5-2 7-2 12.2C5 18.3 7.8 22 12 22Z"></path></svg>
+              <span>Impact</span>
+            </button>
+            <button class="board-filter is-active" type="button" aria-label="Trier par date" aria-pressed="true" data-sort="date">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 10h18"></path></svg>
+              <span>Date</span>
+            </button>
+            <button class="board-filter" type="button" aria-label="Trier par pertinence" aria-pressed="false" data-sort="relevance">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h11M4 18h6M18 10v8m-3-3 3 3 3-3"></path></svg>
+              <span>Pertinence</span>
+            </button>
+          </div>
+        </div>
+        <div class="news-card-list" data-news-list></div>
+        <p class="search-empty" role="status" data-search-empty hidden>Aucun résultat pour cette recherche.</p>
+      </section>
+
+      <section id="inline-news-detail" class="inline-news-detail" aria-label="Detail de l'actualite selectionnee" hidden>
+        <a class="back-link" href="#empty-card" data-close-news>← Retour aux signaux</a>
+        <article id="inline-news-content" class="news-article"></article>
+      </section>
+      <section class="trending-section" data-trending-section aria-labelledby="trending-title" hidden>
+        <div class="trending-heading">
+          <div>
+            <p class="trending-eyebrow">Sélection VeiLCL · 4 signaux</p>
+            <h2 id="trending-title">En tendance</h2>
+          </div>
+          <span class="trending-note">Ce qui fait bouger la finance</span>
+        </div>
+        <div class="trending-grid" data-trending-grid>
+          <a class="trending-card" href="#empty-card" data-trending-id="news-shopify-canvas">
+            <span class="trending-image"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="" loading="lazy"><span class="trending-image-label">COMMERCE AUGMENTÉ</span></span>
+            <span class="trending-card-body">
+              <time class="trending-date" data-trending-date></time>
+              <span class="trending-card-title" data-trending-title></span>
+              <span class="trending-copy">Le marchand décrit ce qu’il veut. <strong>Sidekick suggère, Canvas applique</strong> au vrai thème de sa boutique. La création de vitrine devient une conversation, mais l’humain garde la main sur le résultat.</span>
+              <span class="trending-card-footer"><span class="trending-tag" data-trending-category></span><span class="trending-read">Lire le signal <span aria-hidden="true">↗</span></span></span>
+            </span>
+          </a>
+          <a class="trending-card" href="#empty-card" data-trending-id="news-esma-mica">
+            <span class="trending-image"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="" loading="lazy"><span class="trending-image-label">RÈGLES DU JEU</span></span>
+            <span class="trending-card-body">
+              <time class="trending-date" data-trending-date></time>
+              <span class="trending-card-title" data-trending-title></span>
+              <span class="trending-copy">DeFi, staking, stablecoins : <strong>MiCA cherche ses contours</strong>. L’ESMA propose des clarifications sur les jetons, la protection des investisseurs et les pouvoirs de supervision.</span>
+              <span class="trending-card-footer"><span class="trending-tag" data-trending-category></span><span class="trending-read">Lire le signal <span aria-hidden="true">↗</span></span></span>
+            </span>
+          </a>
+          <a class="trending-card" href="#empty-card" data-trending-id="news-mastercard-agent-pay">
+            <span class="trending-image"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="" loading="lazy"><span class="trending-image-label">AGENTS EN ACTION</span></span>
+            <span class="trending-card-body">
+              <time class="trending-date" data-trending-date></time>
+              <span class="trending-card-title" data-trending-title></span>
+              <span class="trending-copy">Et si l’acheteur était un agent ? Mastercard teste <strong>des signaux pour reconnaître les paiements initiés par l’IA</strong>. La confiance devient une nouvelle étape du parcours d’achat.</span>
+              <span class="trending-card-footer"><span class="trending-tag" data-trending-category></span><span class="trending-read">Lire le signal <span aria-hidden="true">↗</span></span></span>
+            </span>
+          </a>
+          <a class="trending-card" href="#empty-card" data-trending-id="news-brite-uk">
+            <span class="trending-image"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="" loading="lazy"><span class="trending-image-label">PAIEMENT DIRECT</span></span>
+            <span class="trending-card-body">
+              <time class="trending-date" data-trending-date></time>
+              <span class="trending-card-title" data-trending-title></span>
+              <span class="trending-copy">Un compte, une autorisation FCA et un nouveau parcours : <strong>Pay by Bank s’installe au Royaume-Uni</strong>. Brite avance par étapes vers davantage de paiements de compte à compte.</span>
+              <span class="trending-card-footer"><span class="trending-tag" data-trending-category></span><span class="trending-read">Lire le signal <span aria-hidden="true">↗</span></span></span>
+            </span>
+          </a>
+        </div>
+      </section>
+      <section class="magazine-view" data-magazine-view hidden aria-labelledby="magazine-title">
+        <header class="magazine-heading">
+          <div>
+            <p class="magazine-eyebrow">Kiosque VeiLCL</p>
+            <h1 id="magazine-title">Magazines à découvrir</h1>
+          </div>
+          <p class="magazine-description">Quatre regards sur les mutations de la finance.</p>
+        </header>
+        <div class="magazine-grid">
+          <a class="magazine-item" href="https://fintechmagazine.com/" target="_blank" rel="noopener noreferrer" aria-label="Visiter Fintech Magazine dans un nouvel onglet">
+            <span class="magazine-cover magazine-cover--fintech" data-magazine-cover>
+              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="" loading="lazy">
+              <span class="magazine-cover-topline"><span>VEILLE FINANCE · TECH</span><span>01 / 04</span></span>
+              <span class="magazine-cover-masthead">Fintech<br>Magazine</span>
+              <span class="magazine-cover-kicker">LE GRAND DOSSIER</span>
+              <span class="magazine-cover-headline">La finance<br>change d’échelle</span>
+              <span class="magazine-cover-demo">COUVERTURE DÉMO</span>
+            </span>
+            <span class="magazine-caption"><span>Fintech Magazine</span><span>Découvrir <span aria-hidden="true">↗</span></span></span>
+          </a>
+          <a class="magazine-item" href="https://thefintechtimes.com/" target="_blank" rel="noopener noreferrer" aria-label="Visiter The Fintech Times dans un nouvel onglet">
+            <span class="magazine-cover magazine-cover--times" data-magazine-cover>
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="" loading="lazy">
+              <span class="magazine-cover-topline"><span>GLOBAL FINANCE</span><span>02 / 04</span></span>
+              <span class="magazine-cover-masthead magazine-cover-masthead--wide">The Fintech<br>Times</span>
+              <span class="magazine-cover-kicker">THE NEXT FRONTIER</span>
+              <span class="magazine-cover-headline">Banque sans<br>frontières</span>
+              <span class="magazine-cover-demo">COUVERTURE DÉMO</span>
+            </span>
+            <span class="magazine-caption"><span>The Fintech Times</span><span>Découvrir <span aria-hidden="true">↗</span></span></span>
+          </a>
+          <a class="magazine-item" href="https://www.paymentsjournal.com/" target="_blank" rel="noopener noreferrer" aria-label="Visiter PaymentsJournal dans un nouvel onglet">
+            <span class="magazine-cover magazine-cover--payments" data-magazine-cover>
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="" loading="lazy">
+              <span class="magazine-cover-topline"><span>PAYMENTS · COMMERCE</span><span>03 / 04</span></span>
+              <span class="magazine-cover-masthead magazine-cover-masthead--compact">Payments<br>Journal</span>
+              <span class="magazine-cover-kicker">MONEY IN MOTION</span>
+              <span class="magazine-cover-headline">Le paiement<br>invisible</span>
+              <span class="magazine-cover-demo">COUVERTURE DÉMO</span>
+            </span>
+            <span class="magazine-caption"><span>PaymentsJournal</span><span>Découvrir <span aria-hidden="true">↗</span></span></span>
+          </a>
+          <a class="magazine-item" href="https://www.thebanker.com/" target="_blank" rel="noopener noreferrer" aria-label="Visiter The Banker dans un nouvel onglet">
+            <span class="magazine-cover magazine-cover--banker" data-magazine-cover>
+              <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="" loading="lazy">
+              <span class="magazine-cover-topline"><span>THE WORLD OF FINANCE</span><span>04 / 04</span></span>
+              <span class="magazine-cover-masthead magazine-cover-masthead--banker">The<br>Banker</span>
+              <span class="magazine-cover-kicker">A NEW CHAPTER</span>
+              <span class="magazine-cover-headline">La prochaine<br>révolution<br>bancaire</span>
+              <span class="magazine-cover-demo">COUVERTURE DÉMO</span>
+            </span>
+            <span class="magazine-caption"><span>The Banker</span><span>Découvrir <span aria-hidden="true">↗</span></span></span>
+          </a>
+        </div>
+      </section>
+          <section class="empty-view" data-empty-view hidden aria-live="polite">
+            <h1 data-empty-title></h1>
+            <div class="news-card-list" data-test-card-list hidden>
+              <article class="news-test-card signal-high" tabindex="0" aria-label="Ouvrir l’article : La concurrence réduit son taux hypothécaire sur 20 ans">
+                <div class="news-card-header">
+                  <div class="news-card-badges">
+                    <span class="news-card-unread" role="img" aria-label="Non lu" title="Non lu"></span>
+                    <span class="news-card-impact impact-high">Impact élevé</span>
+                    <span class="news-card-sector">Crédit immobilier</span>
+                  </div>
+                  <div class="news-card-meta">
+                    <time class="news-card-time" data-relative-date></time>
+                  </div>
+                </div>
+                <h2 class="news-card-title"><button type="button" data-open-test-news>La concurrence réduit son taux hypothécaire sur 20 ans</button></h2>
+                <p class="news-card-summary"><button type="button" data-open-test-news>Le prêteur baisse son taux sur 20 ans, accentuant la pression sur les offres concurrentes.</button></p>
+                <p class="news-card-reflection"><i class="ti ti-bulb news-card-reflection-icon" aria-hidden="true"></i><strong>Pour nous :</strong><span class="news-card-reflection-copy">Notre offre à 20 ans se situe désormais 25 points de base au-dessus du marché.</span></p>
+                <div class="news-card-actions">
+                  <span class="news-card-sources">Les Echos<span class="news-card-source-more"> · Reuters · +1</span></span>
+                  <span class="news-card-score">
+                    <span>Pertinence</span>
+                    <span class="signal-bar" aria-label="Pertinence 82 sur 100"><span></span></span>
+                    <strong>82</strong>
+                  </span>
+                  <span class="news-card-score news-card-confidence">
+                    <span>Confiance</span>
+                    <span class="signal-bar" aria-label="Confiance 74 sur 100"><span style="width: 74%"></span></span>
+                    <strong>74</strong>
+                  </span>
+                  <div class="news-card-action-group">
+                    <button class="news-action" type="button" data-share-news aria-label="Partager" title="Partager">
+                      <svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+                    </button>
+                    <button class="news-action" type="button" data-save-news aria-label="Enregistrer" title="Enregistrer" aria-pressed="false">
+                      <svg class="save-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.75h12a1.5 1.5 0 0 1 1.5 1.5V21L12 17.25 4.5 21V5.25A1.5 1.5 0 0 1 6 3.75Z"></path></svg>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="news-page-view" data-news-page hidden aria-live="polite">
+            <a class="back-link news-action news-action-primary" href="#" data-close-news-page>Retour aux articles</a>
+            <article class="news-test-card news-page-card signal-high">
+              <div class="news-card-header">
+                <div class="news-card-badges">
+                  <span class="news-card-impact impact-high">Impact élevé</span>
+                  <span class="news-card-sector">Crédit immobilier</span>
+                </div>
+                <div class="signal-bar" aria-label="Signal de pertinence élevée">
+                  <span></span>
+                </div>
+                <div class="news-card-meta">
+                  <span class="news-card-sources" data-news-page-sources></span>
+                  <span aria-hidden="true">·</span>
+                  <time class="news-card-time" data-news-page-time></time>
+                </div>
+              </div>
+              <div class="news-page-title-row">
+                <h1 data-news-page-title>La concurrence réduit son taux hypothécaire sur 20 ans</h1>
+                <div class="news-page-actions">
+                  <button class="news-action" type="button" data-share-news aria-label="Partager" title="Partager">
+                    <svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+                  </button>
+                  <button class="news-action" type="button" data-save-news aria-label="Enregistrer" title="Enregistrer" aria-pressed="false">
+                    <svg class="save-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.75h12a1.5 1.5 0 0 1 1.5 1.5V21L12 17.25 4.5 21V5.25A1.5 1.5 0 0 1 6 3.75Z"></path></svg>
+                  </button>
+                </div>
+              </div>
+              <p class="news-card-reflection"><i class="ti ti-bulb news-card-reflection-icon" aria-hidden="true"></i><strong>Pour nous :</strong><span class="news-card-reflection-copy">Notre offre à 20 ans se situe désormais 25 points de base au-dessus du marché.</span></p>
+              <p class="news-read-copy">L’écart de taux peut peser sur la compétitivité des offres et la conversion des dossiers. Un concurrent direct vient d’afficher un taux sur 20 ans inférieur de 25 points de base à notre grille actuelle, ce qui replace immédiatement notre positionnement tarifaire sous surveillance sur ce segment porteur.</p>
+              <p class="news-read-copy">Sur les trois derniers mois, ce type de mouvement s’est répété à plusieurs reprises chez les acteurs les plus agressifs du marché, signe d’une guerre des prix qui s’installe durablement plutôt que d’un ajustement ponctuel. Les courtiers commencent déjà à orienter les nouveaux dossiers vers les offres les plus compétitives, ce qui accélère la pression sur les volumes si aucune réponse n’est apportée à court terme.</p>
+              <p class="news-read-copy">Il mérite un suivi au regard des conditions du marché et de notre positionnement, en particulier sur les profils à revenus stables où la sensibilité au taux affiché reste la plus forte et où un écart prolongé pourrait peser sur la conversion des dossiers en cours d’instruction.</p>
+            <section class="secondary-effects" aria-labelledby="test-secondary-effects-title">
+              <header class="secondary-effects-head">
+                <div class="secondary-effects-title-group">
+                  <span class="secondary-effects-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"></circle><circle cx="5" cy="7" r="1.5"></circle><circle cx="19" cy="7" r="1.5"></circle><circle cx="5" cy="17" r="1.5"></circle><circle cx="19" cy="17" r="1.5"></circle><path d="m10.3 10.9-4-2.8m7.4 2.8 4-2.8m-7.4 5-4 2.8m7.4-2.8 4 2.8"></path></svg>
+                  </span>
+                  <h2 class="secondary-effects-title" id="test-secondary-effects-title">Effets secondaires</h2>
+                  <span class="secondary-effects-ai">Analyse IA</span>
+                </div>
+                <div class="secondary-effects-confidence" aria-label="Confiance de l'analyse : 74 pour cent">
+                  <span>Confiance de l'analyse</span>
+                  <span class="secondary-confidence-track" aria-hidden="true"><span style="width: 74%"></span></span>
+                  <strong>74 %</strong>
+                </div>
+              </header>
+              <div class="secondary-effects-context" aria-label="Contexte pris en compte">
+                <span class="secondary-context-label">Contexte</span>
+                <span class="secondary-context-chip">Taux directeurs stables</span>
+                <span class="secondary-context-chip">Reprise fragile de l'immobilier</span>
+                <span class="secondary-context-chip">Courtage très actif</span>
+              </div>
+              <div class="secondary-effects-immediate">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"></path><path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c5 0 8.5 4.5 9.5 7-.4 1-1.2 2.2-2.5 3.3M6.2 6.2C4.3 7.4 3 9.2 2.5 12c.8 2.1 4.2 7 9.5 7 1.2 0 2.3-.3 3.3-.8"></path></svg>
+                <p><strong>Lecture immédiate :</strong> le concurrent cherche à gagner des parts de marché sur le crédit immobilier.</p>
+              </div>
+              <p class="secondary-effects-lead">Ce à quoi on ne pense pas forcément</p>
+              <div class="secondary-horizons">
+                <section class="secondary-horizon" aria-labelledby="test-short-term">
+                  <h3 class="secondary-horizon-heading" id="test-short-term"><span class="secondary-horizon-dot"></span><span>Court terme · 0–3 mois</span><span class="secondary-horizon-line"></span></h3>
+                  <div class="secondary-horizon-cards">
+                    <article class="secondary-scenario-card">
+                      <h4>Les courtiers réorientent les flux</h4>
+                      <p>Les nouveaux dossiers migrent vers l'offre la moins chère, ce qui renforce le pouvoir de négociation des courtiers.</p>
+                      <div class="secondary-scenario-signal"><span class="secondary-signal-icon" aria-hidden="true"></span><span>Baisse du taux de transformation chez nos 10 courtiers principaux</span></div>
+                      <div class="secondary-scenario-probability" aria-label="Probable"><span class="is-on"></span><span class="is-on"></span><span class="is-on"></span><span>Probable</span></div>
+                    </article>
+                    <article class="secondary-scenario-card">
+                      <h4>Départ des meilleurs profils</h4>
+                      <p>Les emprunteurs les plus solides peuvent partir en premier, ce qui dégrade le profil moyen du portefeuille restant.</p>
+                      <div class="secondary-scenario-signal"><span class="secondary-signal-icon" aria-hidden="true"></span><span>Évolution du score moyen des dossiers acceptés</span></div>
+                      <div class="secondary-scenario-probability" aria-label="Possible"><span class="is-on"></span><span class="is-on"></span><span></span><span>Possible</span></div>
+                    </article>
+                  </div>
+                </section>
+                <section class="secondary-horizon" aria-labelledby="test-medium-term">
+                  <h3 class="secondary-horizon-heading" id="test-medium-term"><span class="secondary-horizon-dot"></span><span>Moyen terme · 3–12 mois</span><span class="secondary-horizon-line"></span></h3>
+                  <div class="secondary-horizon-cards">
+                    <article class="secondary-scenario-card">
+                      <h4>Compensation de la marge perdue</h4>
+                      <p>Le concurrent peut récupérer de la marge via l'assurance emprunteur, la domiciliation des revenus et les offres groupées.</p>
+                      <div class="secondary-scenario-signal"><span class="secondary-signal-icon" aria-hidden="true"></span><span>Nouvelles conditions de domiciliation ou offres liées</span></div>
+                      <div class="secondary-scenario-probability" aria-label="Probable"><span class="is-on"></span><span class="is-on"></span><span class="is-on"></span><span>Probable</span></div>
+                    </article>
+                    <article class="secondary-scenario-card">
+                      <h4>Rachats de crédit de nos clients</h4>
+                      <p>Les clients existants peuvent comparer les offres et renégocier, au-delà des nouveaux dossiers.</p>
+                      <div class="secondary-scenario-signal"><span class="secondary-signal-icon" aria-hidden="true"></span><span>Hausse des demandes de renégociation</span></div>
+                      <div class="secondary-scenario-probability" aria-label="Possible"><span class="is-on"></span><span class="is-on"></span><span></span><span>Possible</span></div>
+                    </article>
+                  </div>
+                </section>
+                <section class="secondary-horizon" aria-labelledby="test-long-term">
+                  <h3 class="secondary-horizon-heading" id="test-long-term"><span class="secondary-horizon-dot"></span><span>Long terme · 12 mois+</span><span class="secondary-horizon-line"></span></h3>
+                  <div class="secondary-horizon-cards">
+                    <article class="secondary-scenario-card">
+                      <h4>Alignement en chaîne du marché</h4>
+                      <p>Si d'autres banques s'alignent, la guerre des prix peut s'installer et comprimer durablement la marge du crédit.</p>
+                      <div class="secondary-scenario-signal"><span class="secondary-signal-icon" aria-hidden="true"></span><span>Baisses de taux chez deux autres réseaux</span></div>
+                      <div class="secondary-scenario-probability" aria-label="Peu probable"><span class="is-on"></span><span></span><span></span><span>Peu probable</span></div>
+                    </article>
+                    <article class="secondary-scenario-card">
+                      <h4>Besoin de refinancement moins cher</h4>
+                      <p>Pour tenir ce prix dans la durée, le concurrent pourrait chercher à diversifier ou réduire son coût de financement.</p>
+                      <div class="secondary-scenario-signal"><span class="secondary-signal-icon" aria-hidden="true"></span><span>Émission de covered bonds annoncée</span></div>
+                      <div class="secondary-scenario-probability" aria-label="Peu probable"><span class="is-on"></span><span></span><span></span><span>Peu probable</span></div>
+                    </article>
+                  </div>
+                </section>
+              </div>
+              <p class="secondary-effects-footnote"><svg class="secondary-effects-footnote-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5m0-8h.01"></path></svg><span>Hypothèse : la baisse se maintient au moins trois mois. À réévaluer si le concurrent retire son offre.</span></p>
+            </section>
+            <section class="strategic-recommendations" aria-labelledby="test-strategic-recommendations-title" data-strategic-actions>
+              <header class="strategic-recommendations-head">
+                <div class="strategic-recommendations-heading">
+                  <span class="strategic-recommendations-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="4"></circle><path d="m14.8 9.2 5.7-5.7M16 3.5h4.5V8"></path></svg></span>
+                  <div class="strategic-recommendations-title-line"><h2 id="test-strategic-recommendations-title">Recommandations stratégiques</h2><span class="secondary-effects-ai">Analyse IA</span></div>
+                </div>
+                <div class="strategic-recommendations-tools"><span class="strategic-priority is-feasible">À instruire · Faisable</span><button class="strategic-copy-button" type="button" data-copy-strategic-actions aria-label="Copier le plan" title="Copier le plan"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"></rect><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2"></path></svg></button><span class="strategic-copy-status" data-copy-strategic-status role="status" aria-live="polite"></span></div>
+              </header>
+              <div class="strategic-recommendation-list">
+                <article class="strategic-recommendation-row"><span class="strategic-recommendation-dot is-high" aria-hidden="true"></span><span class="strategic-recommendation-text">Simuler un alignement partiel sur le 20 ans pour les profils à revenus stables</span><span class="strategic-recommendation-owner">Pricing</span><span class="strategic-recommendation-due">Sous 2 semaines</span></article>
+                <article class="strategic-recommendation-row"><span class="strategic-recommendation-dot is-medium" aria-hidden="true"></span><span class="strategic-recommendation-text">Sécuriser la relation avec les courtiers principaux avant toute renégociation</span><span class="strategic-recommendation-owner">Réseau courtage</span><span class="strategic-recommendation-due">Sous 1 mois</span></article>
+                <article class="strategic-recommendation-row"><span class="strategic-recommendation-dot is-medium" aria-hidden="true"></span><span class="strategic-recommendation-text">Suivre le profil des dossiers perdus pour détecter l’antisélection</span><span class="strategic-recommendation-owner">Risques</span><span class="strategic-recommendation-due">Suivi mensuel</span></article>
+              </div>
+              <div class="strategic-recommendation-actions"><button class="strategic-footer-button strategic-footer-primary" type="button" data-prepare-strategic-note>Préparer une note pour le comité</button><button class="strategic-footer-button" type="button" data-assign-strategic-plan>Assigner</button><button class="strategic-footer-button" type="button" data-discuss-strategic-plan>Discuter</button></div>
+            </section>
+              <div class="news-page-sources">
+                <span class="news-page-sources-label">Sources</span>
+                <a class="news-page-source-link" href="#" target="_blank" rel="noreferrer">European Banking Authority ↗</a>
+                <a class="news-page-source-link" href="#" target="_blank" rel="noreferrer">Reuters ↗</a>
+                <a class="news-page-source-link" href="#" target="_blank" rel="noreferrer">Bloomberg ↗</a>
+              </div>
+            </article>
+            <div data-dynamic-news-page hidden></div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <dialog class="news-dialog share-dialog" data-share-dialog aria-labelledby="share-dialog-title">
+      <form data-share-form>
+        <header class="committee-note-header share-dialog-header">
+          <span class="committee-note-icon" aria-hidden="true"><i class="ti ti-share-3"></i></span>
+          <div class="committee-note-heading">
+            <h2 id="share-dialog-title">Partager cette actualité</h2>
+            <p data-share-article></p>
+          </div>
+          <button class="committee-note-close" type="button" data-close-share aria-label="Fermer"><i class="ti ti-x"></i></button>
+        </header>
+        <div class="share-dialog-body">
+          <div class="committee-note-field">
+            <label for="share-email">Adresse e-mail du destinataire</label>
+            <input class="committee-note-input share-email" id="share-email" name="email" type="email" autocomplete="email" placeholder="nom@exemple.fr" required />
+          </div>
+          <div class="share-recipient-option" data-share-recipient-option hidden>
+            <label class="assignment-person share-recipient-card">
+              <input type="radio" name="share-recipient" value="" data-share-recipient />
+              <span class="assignment-avatar" data-share-avatar></span>
+              <span class="assignment-person-copy"><strong data-share-name></strong><small class="assignment-team-label">Destinataire</small></span>
+            </label>
+          </div>
+          <p class="share-status" data-share-status role="status" hidden></p>
+          <fieldset class="committee-note-field share-channel-field">
+            <legend>Partager via</legend>
+            <div class="share-channel-options" role="radiogroup" aria-label="Canal de partage">
+              <label class="share-channel-option">
+                <input type="radio" name="share-channel" value="email" checked />
+                <i class="ti ti-mail" aria-hidden="true"></i>
+                <span>E-mail</span>
+              </label>
+              <label class="share-channel-option">
+                <input type="radio" name="share-channel" value="teams" />
+                <i class="ti ti-brand-teams" aria-hidden="true"></i>
+                <span>Teams</span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+        <footer class="committee-note-footer share-dialog-footer">
+          <button class="committee-note-button" type="button" data-close-share>Annuler</button>
+          <button class="committee-note-button committee-note-button-primary" type="submit">Partager</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="news-dialog share-dialog newsletter-dialog" data-newsletter-dialog aria-labelledby="newsletter-dialog-title">
+      <form data-newsletter-form>
+        <header class="committee-note-header share-dialog-header">
+          <span class="committee-note-icon" aria-hidden="true"><i class="ti ti-mail"></i></span>
+          <div class="committee-note-heading newsletter-dialog-heading">
+            <h2 id="newsletter-dialog-title" data-newsletter-title>Newsletter</h2>
+            <p data-newsletter-subtitle>Abonnez-vous à la newsletter</p>
+          </div>
+          <button class="committee-note-close" type="button" data-close-newsletter aria-label="Fermer"><i class="ti ti-x"></i></button>
+        </header>
+        <div class="share-dialog-body" data-newsletter-email-step>
+          <div class="committee-note-field">
+            <label for="newsletter-email">Adresse e-mail</label>
+            <input class="committee-note-input" id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="nom@exemple.fr" required />
+          </div>
+        </div>
+        <div class="share-dialog-body newsletter-frequency-step" data-newsletter-frequency-step hidden>
+          <fieldset class="committee-note-field newsletter-frequency-field">
+            <legend>Fréquence d’envoi</legend>
+            <div class="share-channel-options" role="radiogroup" aria-label="Fréquence de la newsletter">
+              <label class="share-channel-option newsletter-frequency-option">
+                <input type="radio" name="newsletter-frequency" value="daily" checked />
+                <i class="ti ti-sun" aria-hidden="true"></i>
+                <span class="newsletter-frequency-copy"><strong>Quotidienne</strong><small>Chaque jour ouvré</small></span>
+              </label>
+              <label class="share-channel-option newsletter-frequency-option">
+                <input type="radio" name="newsletter-frequency" value="weekly" />
+                <i class="ti ti-calendar-week" aria-hidden="true"></i>
+                <span class="newsletter-frequency-copy"><strong>Hebdomadaire</strong><small>Une fois par semaine</small></span>
+              </label>
+            </div>
+          </fieldset>
+          <p class="share-status newsletter-error" data-newsletter-error role="status" hidden></p>
+        </div>
+        <div class="share-dialog-body newsletter-confirmation" data-newsletter-confirmation hidden>
+          <span class="newsletter-confirmation-icon" aria-hidden="true"><i class="ti ti-check"></i></span>
+          <h3 data-newsletter-confirmation-title>Préférence enregistrée</h3>
+          <p data-newsletter-confirmation-copy></p>
+        </div>
+        <footer class="committee-note-footer share-dialog-footer newsletter-dialog-footer">
+          <button class="committee-note-button" type="button" data-close-newsletter data-newsletter-cancel>Annuler</button>
+          <button class="committee-note-button" type="button" data-newsletter-back hidden>Retour</button>
+          <button class="committee-note-button committee-note-button-primary" type="button" data-newsletter-next>Continuer</button>
+          <button class="committee-note-button committee-note-button-primary" type="submit" data-newsletter-submit hidden>Confirmer</button>
+          <button class="committee-note-button committee-note-button-primary" type="button" data-newsletter-done hidden>Terminé</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="committee-note-dialog" data-committee-note-dialog aria-labelledby="committee-note-title">
+      <header class="committee-note-header">
+        <span class="committee-note-icon" aria-hidden="true"><i class="ti ti-file-text"></i></span>
+        <div class="committee-note-heading">
+          <h2 id="committee-note-title">Préparer une note pour le comité</h2>
+          <p data-committee-note-article></p>
+        </div>
+        <button class="committee-note-close" type="button" data-close-committee-note aria-label="Fermer"><i class="ti ti-x"></i></button>
+      </header>
+      <div class="committee-note-body">
+        <div class="committee-note-layout">
+          <div class="committee-note-fields">
+            <div class="committee-note-row">
+              <div class="committee-note-field">
+                <span class="committee-note-field-label" id="committee-note-committee-label">Comité</span>
+                <div class="committee-note-dropdown" id="committee-note-committee" data-note-dropdown data-value="Comité Retail">
+                  <button class="committee-note-select" type="button" data-note-dropdown-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="committee-note-committee-options" aria-labelledby="committee-note-committee-label committee-note-committee-value">
+                    <span class="committee-note-select-icon" aria-hidden="true"><i class="ti ti-users"></i></span>
+                    <span class="committee-note-select-value" id="committee-note-committee-value" data-note-dropdown-value>Comité Retail</span>
+                    <i class="ti ti-chevron-down committee-note-select-chevron" aria-hidden="true"></i>
+                  </button>
+                  <div class="committee-note-dropdown-menu" id="committee-note-committee-options" role="listbox" aria-labelledby="committee-note-committee-label" hidden>
+                    <button class="committee-note-option" type="button" role="option" data-value="Comité Retail" aria-selected="true" tabindex="0"><span>Comité Retail</span><i class="ti ti-check" aria-hidden="true"></i></button>
+                    <button class="committee-note-option" type="button" role="option" data-value="Comité des risques" aria-selected="false" tabindex="-1"><span>Comité des risques</span><i class="ti ti-check" aria-hidden="true"></i></button>
+                    <button class="committee-note-option" type="button" role="option" data-value="Comité de pricing" aria-selected="false" tabindex="-1"><span>Comité de pricing</span><i class="ti ti-check" aria-hidden="true"></i></button>
+                    <button class="committee-note-option" type="button" role="option" data-value="Comité exécutif" aria-selected="false" tabindex="-1"><span>Comité exécutif</span><i class="ti ti-check" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="committee-note-field">
+                <label for="committee-note-date">Date du comité</label>
+                <input class="committee-note-input" id="committee-note-date" type="date" />
+              </div>
+            </div>
+            <fieldset class="committee-note-field">
+              <legend>Objectif de la note</legend>
+              <div class="committee-note-segment committee-note-segment--sliding" role="radiogroup" aria-label="Objectif de la note">
+                <label><input type="radio" name="committee-note-objective" checked /><span>Pour décision</span></label>
+                <label><input type="radio" name="committee-note-objective" /><span>Pour information</span></label>
+                <label><input type="radio" name="committee-note-objective" /><span>Pour discussion</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="committee-note-field">
+              <legend>Format</legend>
+              <div class="committee-note-segment committee-note-segment--sliding" role="radiogroup" aria-label="Format de la note">
+                <label><input type="radio" name="committee-note-format" checked /><span>Note 1 page</span></label>
+                <label><input type="radio" name="committee-note-format" /><span>Note détaillée</span></label>
+                <label><input type="radio" name="committee-note-format" /><span>Slide</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="committee-note-field">
+              <legend>Contenu à inclure</legend>
+              <div class="committee-note-checks">
+                <label><input type="checkbox" data-note-section="summary" checked /><span class="committee-note-check-icon"><i class="ti ti-news" aria-hidden="true"></i></span><span>Résumé de l'actualité<small>3 lignes et sources</small></span></label>
+                <label><input type="checkbox" data-note-section="why" checked /><span class="committee-note-check-icon"><i class="ti ti-bulb" aria-hidden="true"></i></span><span>Pourquoi c'est important pour nous</span></label>
+                <label><input type="checkbox" data-note-section="effects" /><span class="committee-note-check-icon"><i class="ti ti-chart-arrows-vertical" aria-hidden="true"></i></span><span>Effets secondaires<small>Par horizon, avec signaux à surveiller</small></span></label>
+                <label><input type="checkbox" data-note-section="recommendations" /><span class="committee-note-check-icon"><i class="ti ti-target-arrow" aria-hidden="true"></i></span><span>Recommandations stratégiques</span></label>
+                <label><input type="checkbox" data-note-section="sources" /><span class="committee-note-check-icon"><i class="ti ti-link" aria-hidden="true"></i></span><span>Annexe : liste des sources</span></label>
+              </div>
+            </fieldset>
+            <div class="committee-note-field">
+              <span class="committee-note-field-label" id="committee-note-reviewer-label">Relecteur <small>(validation avant envoi)</small></span>
+              <div class="committee-note-dropdown" id="committee-note-reviewer" data-note-dropdown data-value="Analyste veille stratégique">
+                <button class="committee-note-select" type="button" data-note-dropdown-trigger aria-haspopup="listbox" aria-expanded="false" aria-controls="committee-note-reviewer-options" aria-labelledby="committee-note-reviewer-label committee-note-reviewer-value">
+                  <span class="committee-note-select-icon" aria-hidden="true"><i class="ti ti-user-check"></i></span>
+                  <span class="committee-note-select-value" id="committee-note-reviewer-value" data-note-dropdown-value>Analyste veille stratégique</span>
+                  <i class="ti ti-chevron-down committee-note-select-chevron" aria-hidden="true"></i>
+                </button>
+                <div class="committee-note-dropdown-menu" id="committee-note-reviewer-options" role="listbox" aria-labelledby="committee-note-reviewer-label" hidden>
+                  <button class="committee-note-option" type="button" role="option" data-value="Analyste veille stratégique" aria-selected="true" tabindex="0"><span>Analyste veille stratégique</span><i class="ti ti-check" aria-hidden="true"></i></button>
+                  <button class="committee-note-option" type="button" role="option" data-value="Responsable Retail" aria-selected="false" tabindex="-1"><span>Responsable Retail</span><i class="ti ti-check" aria-hidden="true"></i></button>
+                  <button class="committee-note-option" type="button" role="option" data-value="Aucun, je valide moi-même" aria-selected="false" tabindex="-1"><span>Aucun, je valide moi-même</span><i class="ti ti-check" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <aside class="committee-note-preview" aria-label="Aperçu du plan de la note">
+            <h3>Aperçu du plan</h3>
+            <div class="committee-note-document">
+              <strong data-committee-note-preview-title>Note au Comité Retail</strong>
+              <p data-committee-note-preview-subtitle></p>
+              <ol>
+                <li data-note-preview-section="summary">Résumé de l'actualité</li>
+                <li data-note-preview-section="why">Enjeux pour la banque</li>
+                <li data-note-preview-section="effects" hidden>Effets secondaires attendus</li>
+                <li data-note-preview-section="recommendations" hidden>Recommandations</li>
+                <li data-note-preview-section="sources" hidden>Annexe : sources</li>
+              </ol>
+            </div>
+            <p class="committee-note-ai"><i class="ti ti-sparkles" aria-hidden="true"></i>Brouillon généré par IA</p>
+          </aside>
+        </div>
+      </div>
+      <footer class="committee-note-footer">
+        <span class="committee-note-review"><i class="ti ti-shield-check" aria-hidden="true"></i>Relue par un analyste avant diffusion</span>
+        <button class="committee-note-button" type="button" data-close-committee-note>Annuler</button>
+        <button class="committee-note-button committee-note-button-primary" type="button" data-generate-committee-note>Générer le brouillon</button>
+      </footer>
+    </dialog>
+    <dialog class="assignment-dialog" data-assignment-dialog aria-labelledby="assignment-title">
+      <header class="committee-note-header">
+        <span class="committee-note-icon" aria-hidden="true"><i class="ti ti-user-check"></i></span>
+        <div class="committee-note-heading">
+          <h2 id="assignment-title">Assigner une action</h2>
+          <p data-assignment-article></p>
+        </div>
+        <button class="committee-note-close" type="button" data-close-assignment aria-label="Fermer"><i class="ti ti-x"></i></button>
+      </header>
+      <div class="committee-note-body assignment-body">
+        <div class="committee-note-fields">
+          <div class="committee-note-field assignment-task-field">
+            <span class="committee-note-field-label" id="assignment-action-label">Action à assigner</span>
+            <div class="assignment-task-list" data-assignment-tasks role="radiogroup" aria-labelledby="assignment-action-label"></div>
+            <p class="assignment-validation" data-assignment-validation role="alert" hidden></p>
+          </div>
+          <div class="committee-note-field">
+            <label class="committee-note-field-label" for="assignment-search">Assigner à</label>
+            <input class="committee-note-input" id="assignment-search" type="search" placeholder="Rechercher un collaborateur ou une équipe" data-assignment-search />
+            <div class="assignment-people" role="radiogroup" aria-label="Collaborateur ou équipe">
+              <label class="assignment-person" data-assignment-person>
+                <input type="radio" name="assignment-person" value="Demir" />
+                <span class="assignment-avatar">DM</span>
+                <span class="assignment-person-copy"><strong data-assignee-name>Demir</strong><small class="assignment-team-label">Votre espace</small></span>
+              </label>
+              <label class="assignment-person" data-assignment-person>
+                <input type="radio" name="assignment-person" value="Claire Martin" checked />
+                <span class="assignment-avatar">CM</span>
+                <span class="assignment-person-copy"><strong data-assignee-name>Claire Martin</strong><small class="assignment-team-label">Pricing Retail</small></span>
+                <span class="assignment-suggested">Suggéré</span>
+              </label>
+              <label class="assignment-person" data-assignment-person>
+                <input type="radio" name="assignment-person" value="Thomas Roussel" />
+                <span class="assignment-avatar">TR</span>
+                <span class="assignment-person-copy"><strong data-assignee-name>Thomas Roussel</strong><small class="assignment-team-label">Risques de crédit</small></span>
+              </label>
+              <label class="assignment-person" data-assignment-person>
+                <input type="radio" name="assignment-person" value="Inès Benali" />
+                <span class="assignment-avatar">IB</span>
+                <span class="assignment-person-copy"><strong data-assignee-name>Inès Benali</strong><small class="assignment-team-label">Réseau courtage</small></span>
+              </label>
+            </div>
+            <p class="assignment-no-results" data-assignment-no-results hidden>Aucun collaborateur trouvé.</p>
+          </div>
+          <div class="committee-note-row">
+            <div class="committee-note-field">
+              <span class="committee-note-field-label">Priorité</span>
+              <div class="committee-note-segment committee-note-segment--sliding assignment-priority-segment" role="radiogroup" aria-label="Priorité">
+                <label><input type="radio" name="assignment-priority" value="low" /><span>Basse</span></label>
+                <label><input type="radio" name="assignment-priority" value="medium" /><span>Moyenne</span></label>
+                <label><input type="radio" name="assignment-priority" value="high" checked /><span>Haute</span></label>
+              </div>
+            </div>
+            <div class="committee-note-field">
+              <label for="assignment-due-date">Échéance</label>
+              <input class="committee-note-input" id="assignment-due-date" type="date" data-assignment-date />
+            </div>
+          </div>
+          <div class="committee-note-field">
+            <label for="assignment-message">Message <small>(facultatif)</small></label>
+            <textarea class="committee-note-input assignment-message" id="assignment-message" placeholder="Contexte utile pour la personne qui reçoit la tâche"></textarea>
+          </div>
+          <fieldset class="committee-note-field">
+            <legend>Notifications</legend>
+            <div class="assignment-notifications">
+              <label><input type="checkbox" /><i class="ti ti-brand-teams" aria-hidden="true"></i><span>Notifier sur Teams</span></label>
+              <label><input type="checkbox" data-default-checked /><i class="ti ti-mail" aria-hidden="true"></i><span>Notifier par e-mail</span></label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <footer class="committee-note-footer">
+        <span class="committee-note-review"><i class="ti ti-lock-check" aria-hidden="true"></i>Les personnes assignées seront notifiées</span>
+        <button class="committee-note-button" type="button" data-close-assignment>Annuler</button>
+        <button class="committee-note-button committee-note-button-primary" type="button" data-submit-assignment>Assigner</button>
+      </footer>
+    </dialog>
+    <div class="committee-note-toast assignment-toast" data-assignment-toast role="status" aria-live="polite" hidden>
+      <div class="committee-note-toast-message">
+        <i class="ti ti-loader-2 committee-note-toast-icon" data-assignment-toast-icon aria-hidden="true"></i>
+        <span data-assignment-toast-label></span>
+      </div>
+      <div class="committee-note-progress" aria-hidden="true"><span data-assignment-progress></span></div>
+    </div>
+    <div class="committee-note-toast" data-committee-note-toast role="status" aria-live="polite" hidden>
+      <div class="committee-note-toast-message">
+        <i class="ti ti-loader-2 committee-note-toast-icon" data-committee-note-toast-icon aria-hidden="true"></i>
+        <span data-committee-note-toast-label>Génération du brouillon…</span>
+      </div>
+      <div class="committee-note-progress" aria-hidden="true"><span data-committee-note-progress></span></div>
+    </div>
+    <div class="committee-note-toast" data-share-toast role="status" aria-live="polite" hidden>
+      <div class="committee-note-toast-message">
+        <i class="ti ti-loader-2 committee-note-toast-icon" data-share-toast-icon aria-hidden="true"></i>
+        <span data-share-toast-label>Préparation du partage…</span>
+      </div>
+      <div class="committee-note-progress" aria-hidden="true"><span data-share-progress></span></div>
+    </div>
+
+    <script src="news.js"></script>
+    <script>
+      const pageBackground = document.querySelector('.page-bg');
+      const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const finePointer = window.matchMedia('(pointer: fine)');
+      if (pageBackground && !reducedMotionPreference.matches && finePointer.matches) {
+        let pointerTargetX = 50;
+        let pointerTargetY = 40;
+        let pointerPositionX = 50;
+        let pointerPositionY = 40;
+        let backgroundFrame = 0;
+
+        const renderPointerGlow = () => {
+          pointerPositionX += (pointerTargetX - pointerPositionX) * 0.12;
+          pointerPositionY += (pointerTargetY - pointerPositionY) * 0.12;
+          pageBackground.style.setProperty('--pointer-x', `${pointerPositionX}%`);
+          pageBackground.style.setProperty('--pointer-y', `${pointerPositionY}%`);
+
+          if (Math.abs(pointerTargetX - pointerPositionX) > 0.08 || Math.abs(pointerTargetY - pointerPositionY) > 0.08) {
+            backgroundFrame = window.requestAnimationFrame(renderPointerGlow);
+          } else {
+            backgroundFrame = 0;
+          }
+        };
+
+        window.addEventListener('pointermove', (event) => {
+          pointerTargetX = event.clientX / window.innerWidth * 100;
+          pointerTargetY = event.clientY / window.innerHeight * 100;
+          if (!backgroundFrame) backgroundFrame = window.requestAnimationFrame(renderPointerGlow);
+        }, { passive: true });
+      }
+
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
+      window.addEventListener('pageshow', () => {
+        if (window.location.hash) {
+          history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+        }
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 0);
+        document.documentElement.style.removeProperty('scroll-behavior');
+      });
+
+      const showCardsButtons = document.querySelectorAll('[data-show-cards]');
+      const signalBoard = document.getElementById('empty-card');
+      const inlineNewsDetail = document.getElementById('inline-news-detail');
+      const inlineNewsContent = document.getElementById('inline-news-content');
+      const newsGrid = document.querySelector('[data-news-list]');
+      const boardGrid = newsGrid;
+      const boardTabs = document.querySelector('.board-tabs');
+      boardTabs.addEventListener('click', (event) => {
+        const tab = event.target.closest('.board-tab');
+        if (!tab) return;
+        boardTabs.dataset.active = tab.dataset.view;
+        boardTabs.querySelectorAll('.board-tab').forEach((button) => {
+          const isActive = button === tab;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-selected', String(isActive));
+        });
+      });
+      const boardFilters = document.querySelector('.board-filters');
+      let activeBoardSort = 'date';
+      boardFilters.addEventListener('click', (event) => {
+        const selectedFilter = event.target.closest('.board-filter');
+        if (!selectedFilter) return;
+        if (selectedFilter.dataset.sort) {
+          const sort = selectedFilter.dataset.sort;
+          const nextSort = sort !== 'date' && sort === activeBoardSort ? 'date' : sort;
+          setBoardSort(nextSort);
+          return;
+        }
+        const shouldActivate = selectedFilter.getAttribute('aria-pressed') !== 'true';
+        selectedFilter.classList.toggle('is-active', shouldActivate);
+        selectedFilter.setAttribute('aria-pressed', String(shouldActivate));
+      });
+
+      const newsDateGroups = [
+        { key: 'today', label: "AUJOURD'HUI", order: 0 },
+        { key: 'yesterday', label: 'HIER', order: 1 },
+        { key: 'this-week', label: 'CETTE SEMAINE', order: 2 },
+        { key: 'last-week', label: 'LA SEMAINE DERNIÈRE', order: 3 },
+        { key: 'this-month', label: 'CE MOIS-CI', order: 4 },
+        { key: 'last-month', label: 'LE MOIS DERNIER', order: 5 },
+        { key: 'before', label: 'AVANT', order: Number.MAX_SAFE_INTEGER }
+      ];
+      const newsDateBuckets = new Map(newsDateGroups.map(({ key }) => [key, []]));
+      const monthIndexes = {
+        janvier: 0,
+        fevrier: 1,
+        mars: 2,
+        avril: 3,
+        mai: 4,
+        juin: 5,
+        juillet: 6,
+        aout: 7,
+        septembre: 8,
+        octobre: 9,
+        novembre: 10,
+        decembre: 11
+      };
+      const parseNewsDate = (value) => {
+        const dateText = String(value || '').trim();
+        const isoDate = dateText.match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (isoDate) return new Date(Number(isoDate[1]), Number(isoDate[2]) - 1, Number(isoDate[3]));
+
+        const frenchDate = dateText.match(/^(\d{1,2})(?:er)?\s+([a-zà-ÿ]+)\s+(\d{4})$/i);
+        if (frenchDate) {
+          const monthName = frenchDate[2].toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+          const monthIndex = monthIndexes[monthName];
+          if (monthIndex !== undefined) return new Date(Number(frenchDate[3]), monthIndex, Number(frenchDate[1]));
+        }
+
+        const fallbackDate = new Date(dateText);
+        return Number.isNaN(fallbackDate.getTime()) ? null : fallbackDate;
+      };
+      const startOfDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      const currentDay = startOfDay(new Date());
+      const yesterday = new Date(currentDay);
+      yesterday.setDate(yesterday.getDate() - 1);
+      const weekStart = new Date(currentDay);
+      weekStart.setDate(weekStart.getDate() - ((weekStart.getDay() + 6) % 7));
+      const nextWeekStart = new Date(weekStart);
+      nextWeekStart.setDate(nextWeekStart.getDate() + 7);
+      const lastWeekStart = new Date(weekStart);
+      lastWeekStart.setDate(lastWeekStart.getDate() - 7);
+      const monthStart = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
+      const getNewsDateGroup = (date) => {
+        if (!date) return 'before';
+        const newsDay = startOfDay(date);
+        if (newsDay.getTime() === currentDay.getTime()) return 'today';
+        if (newsDay.getTime() === yesterday.getTime()) return 'yesterday';
+        if (newsDay >= weekStart && newsDay < nextWeekStart) return 'this-week';
+        if (newsDay >= lastWeekStart && newsDay < weekStart) return 'last-week';
+        const monthOffset = (currentDay.getFullYear() - newsDay.getFullYear()) * 12
+          + currentDay.getMonth() - newsDay.getMonth();
+        if (monthOffset === 0) return 'this-month';
+        if (monthOffset === 1) return 'last-month';
+        if (monthOffset > 1) {
+          const key = `month-${monthOffset}`;
+          if (!newsDateBuckets.has(key)) {
+            newsDateBuckets.set(key, []);
+            newsDateGroups.push({ key, label: `IL Y A ${monthOffset} MOIS`, order: monthOffset + 4 });
+          }
+          return key;
+        }
+        return 'before';
+      };
+
+      const boardCardRecords = [];
+      Object.values(window.newsItems).forEach((item, index) => {
+        const impact = item.score >= 80
+          ? { className: 'impact-high', label: 'Impact élevé' }
+          : item.score >= 60
+            ? { className: 'impact-medium', label: 'Impact moyen' }
+            : { className: 'impact-low', label: 'Information' };
+        const signalLevel = item.score >= 80 ? 'high' : item.score >= 60 ? 'medium' : 'low';
+        const card = document.createElement('article');
+        card.className = `news-test-card signal-${signalLevel}`;
+        card.tabIndex = 0;
+        card.setAttribute('aria-label', `Ouvrir l’article : ${item.title}`);
+        card.dataset.newsId = item.id;
+        card.dataset.sector = item.sector;
+
+        const header = document.createElement('div');
+        header.className = 'news-card-header';
+        const badges = document.createElement('div');
+        badges.className = 'news-card-badges';
+        const impactBadge = document.createElement('span');
+        impactBadge.className = `news-card-impact ${impact.className}`;
+        impactBadge.textContent = impact.label;
+        const sectorBadge = document.createElement('span');
+        sectorBadge.className = 'news-card-sector';
+        sectorBadge.textContent = item.category;
+        const unreadMarker = document.createElement('span');
+        unreadMarker.className = 'news-card-unread';
+        unreadMarker.setAttribute('role', 'img');
+        unreadMarker.setAttribute('aria-label', 'Non lu');
+        unreadMarker.setAttribute('title', 'Non lu');
+        badges.append(unreadMarker, impactBadge, sectorBadge);
+
+        const meta = document.createElement('div');
+        meta.className = 'news-card-meta';
+        const date = document.createElement('time');
+        date.className = 'news-card-time';
+        date.textContent = item.date;
+        meta.append(date);
+        header.append(badges, meta);
+
+        const title = document.createElement('h2');
+        title.className = 'news-card-title';
+        const titleButton = document.createElement('button');
+        titleButton.type = 'button';
+        titleButton.dataset.openNews = '';
+        titleButton.textContent = item.title;
+        title.append(titleButton);
+
+        const summary = document.createElement('p');
+        summary.className = 'news-card-summary';
+        const summaryButton = document.createElement('button');
+        summaryButton.type = 'button';
+        summaryButton.dataset.openNews = '';
+        summaryButton.textContent = item.summary;
+        summary.append(summaryButton);
+
+        const reflection = document.createElement('p');
+        reflection.className = 'news-card-reflection';
+        const reflectionIcon = document.createElement('i');
+        reflectionIcon.classList.add('ti', 'ti-bulb', 'news-card-reflection-icon');
+        reflectionIcon.setAttribute('aria-hidden', 'true');
+        const reflectionLabel = document.createElement('strong');
+        reflectionLabel.textContent = 'Pour nous : ';
+        const reflectionCopy = document.createElement('span');
+        reflectionCopy.className = 'news-card-reflection-copy';
+        reflectionCopy.textContent = item.secondaryAnalysis.immediate;
+        reflection.append(reflectionIcon, reflectionLabel, reflectionCopy);
+
+        const actions = document.createElement('div');
+        actions.className = 'news-card-actions';
+        const sourceNames = (Array.isArray(item.sources) ? item.sources : [item.source])
+          .map((source) => typeof source === 'string' ? source : source?.name)
+          .filter(Boolean);
+        const source = document.createElement('span');
+        source.className = 'news-card-sources';
+        source.textContent = sourceNames[0] || '';
+        const additionalSources = sourceNames.slice(1, 2);
+        if (sourceNames.length > 2) additionalSources.push(`+${sourceNames.length - 2}`);
+        if (additionalSources.length) {
+          const sourceDetails = document.createElement('span');
+          sourceDetails.className = 'news-card-source-more';
+          sourceDetails.textContent = ` · ${additionalSources.join(' · ')}`;
+          source.append(sourceDetails);
+        }
+        const score = document.createElement('span');
+        score.className = 'news-card-score';
+        const scoreLabel = document.createElement('span');
+        scoreLabel.textContent = 'Pertinence';
+        const bar = document.createElement('div');
+        bar.className = 'signal-bar';
+        bar.setAttribute('aria-label', `Score de pertinence ${item.score} sur 100`);
+        bar.append(document.createElement('span'));
+        const scoreValue = document.createElement('strong');
+        scoreValue.textContent = item.score;
+        score.append(scoreLabel, bar, scoreValue);
+
+        const confidenceValue = item.secondaryAnalysis.confidence;
+        const confidence = document.createElement('span');
+        confidence.className = 'news-card-score news-card-confidence';
+        const confidenceLabel = document.createElement('span');
+        confidenceLabel.textContent = 'Confiance';
+        const confidenceBar = document.createElement('div');
+        confidenceBar.className = 'signal-bar';
+        confidenceBar.setAttribute('aria-label', `Confiance ${confidenceValue} sur 100`);
+        confidenceBar.style.color = 'var(--purple-light)';
+        const confidenceFill = document.createElement('span');
+        confidenceFill.style.width = `${confidenceValue}%`;
+        confidenceBar.append(confidenceFill);
+        const confidenceScore = document.createElement('strong');
+        confidenceScore.textContent = confidenceValue;
+        confidence.append(confidenceLabel, confidenceBar, confidenceScore);
+
+        const actionGroup = document.createElement('div');
+        actionGroup.className = 'news-card-action-group';
+        const shareButton = document.createElement('button');
+        shareButton.className = 'news-action';
+        shareButton.type = 'button';
+        shareButton.dataset.shareNews = '';
+        shareButton.setAttribute('aria-label', 'Partager');
+        shareButton.title = 'Partager';
+        shareButton.innerHTML = '<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>';
+        const saveButton = document.createElement('button');
+        saveButton.className = 'news-action';
+        saveButton.type = 'button';
+        saveButton.dataset.saveNews = '';
+        saveButton.setAttribute('aria-label', 'Enregistrer');
+        saveButton.setAttribute('aria-pressed', 'false');
+        saveButton.title = 'Enregistrer';
+        saveButton.innerHTML = '<svg class="save-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.75h12a1.5 1.5 0 0 1 1.5 1.5V21L12 17.25 4.5 21V5.25A1.5 1.5 0 0 1 6 3.75Z"></path></svg>';
+        actionGroup.append(shareButton, saveButton);
+        actions.append(source, score, confidence, actionGroup);
+        card.append(header, title, summary, reflection, actions);
+        const articleDate = parseNewsDate(item.date);
+        const dateGroup = getNewsDateGroup(articleDate);
+        const impactRank = item.score >= 80 ? 3 : item.score >= 60 ? 2 : 1;
+        const record = { card, date: articleDate, dateGroup, index, score: item.score, impactRank };
+        boardCardRecords.push(record);
+        newsDateBuckets.get(dateGroup).push(record);
+      });
+
+      const boardTitle = document.querySelector('[data-board-title]');
+      const boardLabel = document.querySelector('[data-board-label]');
+      const trendingSection = document.querySelector('[data-trending-section]');
+      const magazineView = document.querySelector('[data-magazine-view]');
+      if (!reducedMotionPreference.matches && finePointer.matches) {
+        magazineView.querySelectorAll('[data-magazine-cover]').forEach((cover) => {
+          const resetCover = () => {
+            cover.style.setProperty('--cover-rotate-x', '0deg');
+            cover.style.setProperty('--cover-rotate-y', '0deg');
+          };
+          cover.addEventListener('pointermove', (event) => {
+            if (event.pointerType !== 'mouse') return;
+            const bounds = cover.getBoundingClientRect();
+            const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+            cover.style.setProperty('--cover-rotate-x', `${(-y * 8).toFixed(2)}deg`);
+            cover.style.setProperty('--cover-rotate-y', `${(x * 10).toFixed(2)}deg`);
+          }, { passive: true });
+          cover.addEventListener('pointerleave', resetCover);
+          cover.addEventListener('pointercancel', resetCover);
+        });
+      }
+      document.querySelectorAll('[data-trending-id]').forEach((card) => {
+        const item = window.newsItems[card.dataset.trendingId];
+        if (!item) {
+          card.remove();
+          return;
+        }
+        card.setAttribute('aria-label', `Ouvrir l’actualité : ${item.title}`);
+        card.querySelector('[data-trending-date]').textContent = item.date;
+        card.querySelector('[data-trending-title]').textContent = item.title;
+        card.querySelector('[data-trending-category]').textContent = item.category;
+      });
+      if (!document.querySelector('[data-trending-id]')) trendingSection.hidden = true;
+      const sectorMenu = document.querySelector('.nav-dropdown');
+      const menuToggle = document.querySelector('[data-news-menu-toggle]');
+      const searchInput = document.querySelector('[data-header-search]');
+      const searchEmpty = document.querySelector('[data-search-empty]');
+      const searchClear = document.querySelector('[data-search-clear]');
+      const mainShell = document.querySelector('.main-shell');
+      const topbar = document.querySelector('.topbar');
+      const welcomePanel = document.querySelector('.welcome-panel');
+      const personalizationPanel = document.querySelector('[data-personalization-panel]');
+      const dashboard = document.querySelector('[data-dashboard]');
+      const aiView = document.querySelector('[data-ai-view]');
+      const alertView = document.querySelector('[data-alert-view]');
+      const alertList = document.querySelector('[data-alert-list]');
+      const alertCount = document.querySelector('[data-alert-count]');
+      const alertAssignmentTemplate = document.querySelector('[data-alert-assignment-template]');
+      const alertAssignmentStorageKey = 'veilcl-alert-assignments';
+      const alertDoneStorageKey = 'veilcl-alert-done';
+      const emptyView = document.querySelector('[data-empty-view]');
+      const emptyTitle = document.querySelector('[data-empty-title]');
+      const testCardList = document.querySelector('[data-test-card-list]');
+      const testCardPreview = testCardList.querySelector('.news-test-card');
+      const testNewsTime = document.querySelector('[data-relative-date]');
+      const newsPageSources = document.querySelector('[data-news-page-sources]');
+      const newsPageTime = document.querySelector('[data-news-page-time]');
+      const newsPageView = document.querySelector('[data-news-page]');
+        const staticNewsPageCard = newsPageView.querySelector('.news-page-card');
+        const dynamicNewsPage = newsPageView.querySelector('[data-dynamic-news-page]');
+      const shareDialog = document.querySelector('[data-share-dialog]');
+      const shareForm = document.querySelector('[data-share-form]');
+      const shareEmail = document.querySelector('#share-email');
+      const shareStatus = document.querySelector('[data-share-status]');
+      const newsletterDialog = document.querySelector('[data-newsletter-dialog]');
+      const newsletterForm = document.querySelector('[data-newsletter-form]');
+      const newsletterEmail = document.querySelector('#newsletter-email');
+      const newsletterEmailStep = document.querySelector('[data-newsletter-email-step]');
+      const newsletterFrequencyStep = document.querySelector('[data-newsletter-frequency-step]');
+      const newsletterConfirmation = document.querySelector('[data-newsletter-confirmation]');
+      const newsletterError = document.querySelector('[data-newsletter-error]');
+      const newsletterTitle = document.querySelector('[data-newsletter-title]');
+      const newsletterSubtitle = document.querySelector('[data-newsletter-subtitle]');
+      const newsletterConfirmationTitle = document.querySelector('[data-newsletter-confirmation-title]');
+      const newsletterConfirmationCopy = document.querySelector('[data-newsletter-confirmation-copy]');
+      const newsletterCancel = document.querySelector('[data-newsletter-cancel]');
+      const newsletterNext = document.querySelector('[data-newsletter-next]');
+      const newsletterBack = document.querySelector('[data-newsletter-back]');
+      const newsletterSubmit = document.querySelector('[data-newsletter-submit]');
+      const newsletterDone = document.querySelector('[data-newsletter-done]');
+      const newsletterStorageKey = 'veilcl-newsletter-subscription';
+      const shareArticle = document.querySelector('[data-share-article]');
+      const shareRecipientOption = document.querySelector('[data-share-recipient-option]');
+      const shareRecipient = document.querySelector('[data-share-recipient]');
+      const shareRecipientName = document.querySelector('[data-share-name]');
+      const shareRecipientAvatar = document.querySelector('[data-share-avatar]');
+      const shareToast = document.querySelector('[data-share-toast]');
+      const shareToastIcon = document.querySelector('[data-share-toast-icon]');
+      const shareToastLabel = document.querySelector('[data-share-toast-label]');
+      const shareToastProgress = document.querySelector('[data-share-progress]');
+      let shareToastTimer;
+        let activeShareTitle = '';
+      const sidebarNewsToggle = document.querySelector('[data-sidebar-news]');
+      const sidebarNewsMenu = document.getElementById('sidebar-news-menu');
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+      const sidebarSublinks = document.querySelectorAll('.sidebar-sublink');
+      const profileRole = document.querySelector('[data-profile-role]');
+      const profileContext = document.querySelector('[data-profile-context]');
+      const profilePrompt = document.querySelector('[data-profile-prompt]');
+      const preferenceCount = document.querySelector('[data-preference-count]');
+      const preferenceStatus = document.querySelector('[data-preference-status]');
+      const interestChips = [...document.querySelectorAll('[data-interest]')];
+      const profileMenu = document.querySelector('[data-profile-menu]');
+      const profileMenuToggle = document.querySelector('[data-profile-menu-toggle]');
+      const profileStorageKey = 'veilcl-profile-preferences';
+      let profileInputType = 'mouse';
+      let returnToDashboardAfterPersonalization = false;
+      const readAlertStorage = (key, fallback) => {
+        try {
+          return JSON.parse(window.localStorage.getItem(key) || 'null') || fallback;
+        } catch {
+          return fallback;
+        }
+      };
+      const updateAlertCount = () => {
+        const pending = [...alertList.querySelectorAll('.alert-card')]
+          .filter((card) => !card.querySelector('[data-alert-done]')?.classList.contains('is-done')).length;
+        alertCount.textContent = `${pending} alerte${pending > 1 ? 's' : ''} à traiter`;
+      };
+      const restoreAlertDone = (button) => {
+        const alertId = button.closest('[data-alert-id]')?.dataset.alertId;
+        const isDone = Boolean(readAlertStorage(alertDoneStorageKey, {})[alertId]);
+        button.setAttribute('aria-pressed', String(isDone));
+        button.classList.toggle('is-done', isDone);
+        button.closest('.alert-card').classList.toggle('is-done', isDone);
+        button.querySelector('span').textContent = isDone ? 'Fait' : 'Indiquer comme fait';
+        button.title = isDone ? 'Cliquer pour rétablir cette alerte' : 'Marquer cette alerte comme faite';
+      };
+      const renderAssignedAlerts = () => {
+        alertList.querySelectorAll('[data-assignment-alert]').forEach((card) => card.remove());
+        const assignments = readAlertStorage(alertAssignmentStorageKey, []);
+        if (!Array.isArray(assignments)) return;
+        assignments.filter((assignment) => assignment.assignee === 'Demir').forEach((assignment) => {
+          const card = alertAssignmentTemplate.content.firstElementChild.cloneNode(true);
+          card.dataset.alertId = assignment.id;
+          card.querySelector('[data-alert-avatar]').textContent = assignment.assignedByInitials || 'VL';
+          card.querySelector('[data-alert-person]').textContent = assignment.assignedBy || 'Votre équipe';
+          card.querySelector('[data-alert-team]').textContent = 'Assignation d’action';
+          card.querySelector('[data-alert-time]').textContent = 'À l’instant';
+          card.querySelector('[data-alert-title]').textContent = assignment.task;
+          const priorityLabels = { low: 'Basse', medium: 'Moyenne', high: 'Haute' };
+          const priority = Object.hasOwn(priorityLabels, assignment.priority) ? assignment.priority : 'medium';
+          const priorityPill = card.querySelector('[data-alert-priority]');
+          priorityPill.textContent = `Priorité ${priorityLabels[priority]}`;
+          priorityPill.classList.add(`is-${priority}`);
+          card.querySelector('[data-alert-message]').textContent = assignment.message || 'Votre équipe vous confie cette action.';
+          const articleLink = card.querySelector('[data-alert-news]');
+          const article = window.newsItems[assignment.articleId];
+          if (article) {
+            articleLink.hidden = false;
+            articleLink.dataset.alertNews = assignment.articleId;
+            articleLink.textContent = `Voir l’actualité : ${article.title} ↗`;
+          }
+          restoreAlertDone(card.querySelector('[data-alert-done]'));
+          alertList.prepend(card);
+        });
+        updateAlertCount();
+      };
+      alertList.querySelectorAll('[data-alert-done]').forEach(restoreAlertDone);
+      alertList.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-alert-done]');
+        if (!button) return;
+        const card = button.closest('[data-alert-id]');
+        const alertId = card?.dataset.alertId;
+        if (!alertId) return;
+        const doneAlerts = readAlertStorage(alertDoneStorageKey, {});
+        const isDone = !doneAlerts[alertId];
+        if (isDone) doneAlerts[alertId] = { doneAt: new Date().toISOString() };
+        else delete doneAlerts[alertId];
+        try {
+          window.localStorage.setItem(alertDoneStorageKey, JSON.stringify(doneAlerts));
+        } catch {
+          button.title = 'Impossible d’enregistrer cet état sur cet appareil';
+          return;
+        }
+        restoreAlertDone(button);
+        updateAlertCount();
+      });
+      updateAlertCount();
+      const scrollToPageTop = () => {
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo(0, 0);
+        document.documentElement.style.removeProperty('scroll-behavior');
+      };
+
+      const setProfileMenuOpen = (isOpen) => {
+        profileMenu.classList.toggle('is-open', isOpen);
+        profileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+      };
+
+      profileMenu.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'mouse') setProfileMenuOpen(true);
+      });
+      profileMenu.addEventListener('pointerleave', (event) => {
+        if (event.pointerType === 'mouse' && !profileMenu.contains(document.activeElement)) {
+          setProfileMenuOpen(false);
+        }
+      });
+      profileMenu.addEventListener('focusin', () => {
+        if (profileInputType !== 'touch') setProfileMenuOpen(true);
+      });
+      profileMenu.addEventListener('focusout', (event) => {
+        if (!profileMenu.contains(event.relatedTarget) && !profileMenu.matches(':hover')) {
+          setProfileMenuOpen(false);
+        }
+      });
+      profileMenuToggle.addEventListener('click', (event) => {
+        if (event.detail === 0) {
+          setProfileMenuOpen(true);
+          return;
+        }
+        if (profileInputType === 'touch') {
+          setProfileMenuOpen(profileMenuToggle.getAttribute('aria-expanded') !== 'true');
+          return;
+        }
+        setProfileMenuOpen(true);
+      });
+      profileMenu.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        setProfileMenuOpen(false);
+        profileMenuToggle.focus();
+      });
+      document.addEventListener('pointerdown', (event) => {
+        profileInputType = event.pointerType;
+        if (!profileMenu.contains(event.target)) setProfileMenuOpen(false);
+      });
+      document.addEventListener('keydown', () => { profileInputType = 'keyboard'; });
+
+      const selectedInterests = () => interestChips
+        .filter((chip) => chip.getAttribute('aria-pressed') === 'true')
+        .map((chip) => chip.dataset.interest);
+
+      const updatePreferenceCount = () => {
+        const count = selectedInterests().length;
+        preferenceCount.textContent = `${count} sujet${count > 1 ? 's' : ''} sélectionné${count > 1 ? 's' : ''}`;
+      };
+
+      const saveProfilePreferences = () => {
+        const preferences = {
+          role: profileRole.value.trim(),
+          context: profileContext.value.trim(),
+          about: profilePrompt.value.trim(),
+          interests: selectedInterests()
+        };
+        try {
+          window.localStorage.setItem(profileStorageKey, JSON.stringify(preferences));
+          preferenceStatus.textContent = 'Préférences enregistrées';
+        } catch {
+          preferenceStatus.textContent = 'Enregistrement indisponible sur cet appareil';
+        }
+      };
+
+      try {
+        const savedPreferences = JSON.parse(window.localStorage.getItem(profileStorageKey) || 'null');
+        if (savedPreferences) {
+          profileRole.value = savedPreferences.role || '';
+          profileContext.value = savedPreferences.context || '';
+          profilePrompt.value = savedPreferences.about || '';
+          interestChips.forEach((chip) => {
+            chip.setAttribute('aria-pressed', String(savedPreferences.interests?.includes(chip.dataset.interest) || false));
+          });
+        }
+      } catch {
+        preferenceStatus.textContent = 'Préférences locales indisponibles';
+      }
+      updatePreferenceCount();
+
+      interestChips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
+          updatePreferenceCount();
+          preferenceStatus.textContent = '';
+        });
+      });
+
+      [profileRole, profileContext, profilePrompt].forEach((field) => {
+        field.addEventListener('input', () => { preferenceStatus.textContent = ''; });
+      });
+
+      const openPersonalization = (returnToDashboard = false) => {
+        returnToDashboardAfterPersonalization = returnToDashboard;
+        welcomePanel.hidden = true;
+        dashboard.hidden = true;
+        dashboard.classList.remove('is-entering');
+        mainShell.classList.remove('is-dashboard');
+        personalizationPanel.hidden = false;
+        scrollToPageTop();
+      };
+
+      document.querySelector('[data-open-personalization]').addEventListener('click', () => {
+        openPersonalization();
+      });
+
+      document.querySelector('[data-profile-personalization]').addEventListener('click', () => {
+        const returnToDashboard = !dashboard.hidden;
+        setProfileMenuOpen(false);
+        openPersonalization(returnToDashboard);
+      });
+
+      document.querySelector('[data-open-newsletter]').addEventListener('click', () => {
+        setProfileMenuOpen(false);
+        newsletterForm.reset();
+        newsletterEmailStep.hidden = false;
+        newsletterFrequencyStep.hidden = true;
+        newsletterConfirmation.hidden = true;
+        newsletterError.hidden = true;
+        newsletterError.textContent = '';
+        newsletterTitle.textContent = 'Newsletter';
+        newsletterSubtitle.textContent = 'Abonnez-vous à la newsletter';
+        newsletterCancel.hidden = false;
+        newsletterNext.hidden = false;
+        newsletterBack.hidden = true;
+        newsletterSubmit.hidden = true;
+        newsletterDone.hidden = true;
+        newsletterDialog.showModal();
+        newsletterEmail.focus();
+      });
+
+      newsletterNext.addEventListener('click', () => {
+        if (!newsletterEmail.reportValidity()) return;
+        newsletterEmailStep.hidden = true;
+        newsletterFrequencyStep.hidden = false;
+        newsletterError.hidden = true;
+        newsletterSubtitle.textContent = 'Choisissez votre fréquence d’envoi.';
+        newsletterNext.hidden = true;
+        newsletterBack.hidden = false;
+        newsletterSubmit.hidden = false;
+        newsletterFrequencyStep.querySelector('input[name="newsletter-frequency"]:checked').focus();
+      });
+
+      newsletterBack.addEventListener('click', () => {
+        newsletterFrequencyStep.hidden = true;
+        newsletterEmailStep.hidden = false;
+        newsletterSubtitle.textContent = 'Abonnez-vous à la newsletter';
+        newsletterNext.hidden = false;
+        newsletterBack.hidden = true;
+        newsletterSubmit.hidden = true;
+        newsletterEmail.focus();
+      });
+
+      document.querySelector('[data-open-ai-preferences]').addEventListener('click', () => {
+        showAiView();
+        requestAnimationFrame(() => profilePrompt.focus({ preventScroll: true }));
+      });
+
+      document.querySelector('[data-profile-signout]').addEventListener('click', () => {
+        setProfileMenuOpen(false);
+        document.querySelector('[data-home-link]').click();
+      });
+
+      document.querySelector('[data-back-welcome]').addEventListener('click', () => {
+        personalizationPanel.hidden = true;
+        if (returnToDashboardAfterPersonalization) {
+          returnToDashboardAfterPersonalization = false;
+          showAiView();
+          return;
+        }
+        welcomePanel.hidden = false;
+        scrollToPageTop();
+      });
+
+      document.querySelector('[data-save-preferences]').addEventListener('click', saveProfilePreferences);
+      document.querySelector('[data-continue-to-feed]').addEventListener('click', () => {
+        saveProfilePreferences();
+        personalizationPanel.hidden = true;
+        returnToDashboardAfterPersonalization = false;
+        showBoard();
+      });
+
+      document.querySelector('[data-profile-form]').addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!profilePrompt.value.trim()) {
+          profilePrompt.focus();
+          return;
+        }
+        saveProfilePreferences();
+        personalizationPanel.hidden = true;
+        returnToDashboardAfterPersonalization = false;
+        showBoard();
+      });
+
+      const formatRelativeDate = (date, now = new Date()) => {
+        const elapsed = Math.max(0, now.getTime() - date.getTime());
+        if (elapsed < 60 * 60 * 1000) return `il y a ${Math.max(1, Math.floor(elapsed / 60000))} min`;
+        if (date.toDateString() === now.toDateString()) return `il y a ${Math.floor(elapsed / (60 * 60 * 1000))} h`;
+
+        const dateDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        const currentDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const elapsedDays = Math.floor((currentDay - dateDay) / (24 * 60 * 60 * 1000));
+        if (elapsedDays === 1) return 'hier';
+        if (elapsedDays === 2) return 'avant-hier';
+
+        return new Intl.DateTimeFormat('fr-FR', {
+          day: 'numeric',
+          month: 'short',
+          year: date.getFullYear() === now.getFullYear() ? undefined : 'numeric'
+        }).format(date);
+      };
+
+      const testNewsDate = new Date(Date.now() - 2 * 60 * 60 * 1000);
+      const testSourceCount = 3;
+      const testSourceLabel = `${testSourceCount} ${testSourceCount === 1 ? 'source' : 'sources'}`;
+      testNewsTime.dateTime = testNewsDate.toISOString();
+      testNewsTime.textContent = formatRelativeDate(testNewsDate);
+      newsPageSources.textContent = testSourceLabel;
+      newsPageTime.dateTime = testNewsDate.toISOString();
+      newsPageTime.textContent = formatRelativeDate(testNewsDate);
+      const testCardRecord = {
+        card: testCardPreview,
+        date: testNewsDate,
+        dateGroup: 'today',
+        index: -1,
+        score: 82,
+        impactRank: 3
+      };
+      boardCardRecords.push(testCardRecord);
+      newsDateBuckets.get('today').push(testCardRecord);
+
+      newsDateGroups.sort((first, second) => first.order - second.order).forEach(({ key, label }) => {
+        const articles = newsDateBuckets.get(key);
+        if (!articles.length) return;
+        articles.sort((first, second) => (second.date?.getTime() || 0) - (first.date?.getTime() || 0) || first.index - second.index);
+
+        const group = document.createElement('section');
+        group.className = 'news-date-group';
+        group.dataset.dateGroup = key;
+        const heading = document.createElement('h3');
+        heading.className = 'news-date-heading';
+        heading.textContent = label;
+        const cards = document.createElement('div');
+        cards.className = 'news-date-cards';
+        articles.forEach(({ card }) => cards.append(card));
+        group.append(heading, cards);
+        newsGrid.append(group);
+      });
+
+      const sortedNewsCards = document.createElement('div');
+      sortedNewsCards.className = 'news-ranked-cards';
+      sortedNewsCards.hidden = true;
+      newsGrid.append(sortedNewsCards);
+
+      const updateNewsDateGroupVisibility = () => {
+        newsGrid.querySelectorAll('.news-date-group').forEach((group) => {
+          group.hidden = activeBoardSort !== 'date' || !group.querySelector('.news-test-card:not([hidden])');
+        });
+      };
+
+      const setBoardSort = (sort) => {
+        activeBoardSort = sort;
+        boardFilters.querySelectorAll('[data-sort]').forEach((button) => {
+          const isActive = button.dataset.sort === sort;
+          button.classList.toggle('is-active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+
+        const dateGroupsInGrid = [...newsGrid.querySelectorAll('.news-date-group')];
+        if (sort === 'date') {
+          sortedNewsCards.hidden = true;
+          newsDateGroups
+            .slice()
+            .sort((first, second) => first.order - second.order)
+            .forEach(({ key }) => {
+              const group = dateGroupsInGrid.find((dateGroup) => dateGroup.dataset.dateGroup === key);
+              if (!group) return;
+              const records = boardCardRecords
+                .filter((record) => record.dateGroup === key)
+                .sort((first, second) => (second.date?.getTime() || 0) - (first.date?.getTime() || 0) || first.index - second.index);
+              records.forEach(({ card }) => card.style.removeProperty('--card-order'));
+              group.querySelector('.news-date-cards').replaceChildren(...records.map(({ card }) => card));
+            });
+          updateNewsDateGroupVisibility();
+        } else {
+          dateGroupsInGrid.forEach((group) => { group.hidden = true; });
+          sortedNewsCards.hidden = false;
+          const compareByDate = (first, second) => (second.date?.getTime() || 0) - (first.date?.getTime() || 0) || first.index - second.index;
+          const sortedRecords = boardCardRecords.slice().sort((first, second) => {
+            if (sort === 'impact' && first.impactRank !== second.impactRank) {
+              return second.impactRank - first.impactRank;
+            }
+            return (second.score - first.score) || compareByDate(first, second);
+          });
+          sortedRecords.forEach(({ card }, index) => card.style.setProperty('--card-order', index));
+          sortedNewsCards.replaceChildren(...sortedRecords.map(({ card }) => card));
+        }
+
+        newsGrid.classList.remove('is-transitioning');
+        void newsGrid.offsetWidth;
+        newsGrid.classList.add('is-transitioning');
+      };
+      const newsCards = newsGrid.querySelectorAll('[data-news-id]');
+
+      const showNewsPage = (item, sourceCard) => {
+        enterDashboard();
+        signalBoard.hidden = true;
+        signalBoard.classList.remove('visible');
+        trendingSection.hidden = true;
+        alertView.hidden = true;
+        magazineView.hidden = true;
+        inlineNewsDetail.hidden = true;
+        emptyView.hidden = true;
+        newsPageView.hidden = false;
+        staticNewsPageCard.hidden = Boolean(item);
+        dynamicNewsPage.hidden = !item;
+        if (item && sourceCard) {
+          const detailCard = staticNewsPageCard.cloneNode(true);
+          detailCard.hidden = false;
+          detailCard.dataset.newsId = item.id;
+          detailCard.dataset.sector = item.sector;
+          const signalLevel = item.score >= 80 ? 'high' : item.score >= 60 ? 'medium' : 'low';
+          detailCard.classList.remove('signal-high', 'signal-medium', 'signal-low');
+          detailCard.classList.add(`signal-${signalLevel}`);
+
+          const impact = item.score >= 80
+            ? { className: 'impact-high', label: 'Impact élevé' }
+            : item.score >= 60
+              ? { className: 'impact-medium', label: 'Impact moyen' }
+              : { className: 'impact-low', label: 'Information' };
+          const impactBadge = detailCard.querySelector('.news-card-impact');
+          impactBadge.classList.remove('impact-high', 'impact-medium', 'impact-low');
+          impactBadge.classList.add(impact.className);
+          impactBadge.textContent = impact.label;
+          detailCard.querySelector('.news-card-sector').textContent = item.category;
+          const scoreBar = detailCard.querySelector('.news-card-header .signal-bar');
+          scoreBar.setAttribute('aria-label', `Score de pertinence ${item.score} sur 100`);
+          scoreBar.querySelector('span').style.width = `${item.score}%`;
+          detailCard.querySelector('[data-news-page-sources]').textContent = item.source;
+          detailCard.querySelector('[data-news-page-time]').textContent = item.date;
+          detailCard.querySelector('[data-news-page-title]').textContent = item.title;
+
+          const saveButton = detailCard.querySelector('[data-save-news]');
+          const isSaved = sourceCard.querySelector('[data-save-news]')?.getAttribute('aria-pressed') === 'true';
+          saveButton.setAttribute('aria-pressed', String(isSaved));
+          saveButton.setAttribute('aria-label', isSaved ? 'Enregistré' : 'Enregistrer');
+          saveButton.title = isSaved ? 'Enregistré' : 'Enregistrer';
+
+          const reflection = detailCard.querySelector('.news-card-reflection');
+          const reflectionLabel = reflection.querySelector('strong');
+          const reflectionIcon = reflection.querySelector('.news-card-reflection-icon');
+          const reflectionCopy = reflection.querySelector('.news-card-reflection-copy');
+          reflectionCopy.textContent = item.secondaryAnalysis.immediate;
+          reflection.replaceChildren(reflectionIcon, reflectionLabel, reflectionCopy);
+          const detailContent = document.createElement('div');
+          window.renderNewsDetail(detailContent, item);
+          const articleParagraphs = [...detailContent.querySelectorAll('.news-section > p:not(.section-label)')];
+          articleParagraphs.forEach((paragraph) => {
+            paragraph.className = 'news-read-copy';
+          });
+          detailCard.querySelectorAll('.news-read-copy').forEach((paragraph) => paragraph.remove());
+          reflection.after(...articleParagraphs);
+          detailCard.querySelector('.secondary-effects').replaceWith(detailContent.querySelector('.secondary-effects'));
+          detailCard.querySelector('.strategic-recommendations').replaceWith(detailContent.querySelector('.strategic-recommendations'));
+
+          const sources = detailCard.querySelector('.news-page-sources');
+          sources.querySelector('.news-page-sources-label').textContent = 'Source';
+          const sourceLinks = [...sources.querySelectorAll('.news-page-source-link')];
+          sourceLinks[0].href = item.sourceUrl;
+          sourceLinks[0].textContent = `${item.source} ↗`;
+          sourceLinks.slice(1).forEach((link) => link.remove());
+          dynamicNewsPage.replaceChildren(detailCard);
+        }
+        newsPageView.classList.remove('is-entering');
+        void newsPageView.offsetWidth;
+        newsPageView.classList.add('is-entering');
+        if (item) newsPageView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+      document.querySelectorAll('[data-open-test-news]').forEach((button) => {
+        button.addEventListener('click', () => showNewsPage());
+      });
+      document.querySelector('[data-close-news-page]').addEventListener('click', (event) => {
+        event.preventDefault();
+        newsPageView.hidden = true;
+        showBoard();
+      });
+
+      document.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-share-news]');
+        if (button) {
+          activeShareTitle = button.closest('.news-test-card')?.querySelector('.news-card-title, [data-news-page-title]')?.textContent.trim()
+            || newsPageView.querySelector('[data-news-page-title]').textContent;
+          shareForm.reset();
+          shareStatus.hidden = true;
+          shareArticle.textContent = activeShareTitle;
+          shareRecipientOption.hidden = true;
+          shareDialog.showModal();
+          shareEmail.focus();
+        }
+      });
+      shareEmail.addEventListener('input', () => {
+        const address = shareEmail.value.trim();
+        const hasValidAddress = address.length > 0 && shareEmail.validity.valid;
+        shareRecipientOption.hidden = !hasValidAddress;
+        shareRecipient.checked = false;
+        shareRecipient.value = hasValidAddress ? address : '';
+        shareStatus.hidden = true;
+        if (!hasValidAddress) return;
+
+        const localPart = address.split('@')[0];
+        const displayName = localPart.split(/[._+-]+/).filter(Boolean)
+          .map((part) => part.charAt(0).toLocaleUpperCase() + part.slice(1)).join(' ') || address;
+        shareRecipientName.textContent = displayName;
+        shareRecipientAvatar.textContent = displayName.split(/\s+/).slice(0, 2)
+          .map((part) => part.charAt(0)).join('').toLocaleUpperCase();
+      });
+      shareForm.querySelectorAll('input[name="share-channel"]').forEach((input) => {
+        input.addEventListener('change', () => {
+          shareStatus.hidden = true;
+        });
+      });
+      document.querySelectorAll('[data-close-share]').forEach((button) => {
+        button.addEventListener('click', () => shareDialog.close());
+      });
+      shareDialog.addEventListener('click', (event) => {
+        if (event.target === shareDialog) shareDialog.close();
+      });
+      document.querySelectorAll('[data-close-newsletter]').forEach((button) => {
+        button.addEventListener('click', () => newsletterDialog.close());
+      });
+      newsletterDialog.addEventListener('click', (event) => {
+        if (event.target === newsletterDialog) newsletterDialog.close();
+      });
+      newsletterDone.addEventListener('click', () => newsletterDialog.close());
+      newsletterForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!newsletterEmail.reportValidity()) return;
+
+        const email = newsletterEmail.value.trim();
+        const frequency = newsletterForm.querySelector('input[name="newsletter-frequency"]:checked')?.value;
+        try {
+          window.localStorage.setItem(newsletterStorageKey, JSON.stringify({
+            email,
+            frequency,
+            savedAt: new Date().toISOString()
+          }));
+        } catch {
+          newsletterError.textContent = 'Impossible d’enregistrer cette préférence sur cet appareil.';
+          newsletterError.hidden = false;
+          return;
+        }
+
+        const frequencyLabel = frequency === 'daily' ? 'quotidienne' : 'hebdomadaire';
+        newsletterFrequencyStep.hidden = true;
+        newsletterConfirmation.hidden = false;
+        newsletterSubtitle.textContent = 'Confirmation';
+        newsletterConfirmationTitle.textContent = 'Inscription enregistrée';
+        newsletterConfirmationCopy.textContent = `Votre demande d’abonnement ${frequencyLabel} pour ${email} est enregistrée sur cet appareil.`;
+        newsletterCancel.hidden = true;
+        newsletterNext.hidden = true;
+        newsletterBack.hidden = true;
+        newsletterSubmit.hidden = true;
+        newsletterDone.hidden = false;
+        newsletterDone.focus();
+      });
+      shareForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!shareEmail.reportValidity()) return;
+        if (!shareRecipient.checked) {
+          shareStatus.textContent = 'Sélectionnez le destinataire avant de partager.';
+          shareStatus.hidden = false;
+          return;
+        }
+        const address = shareRecipient.value;
+        shareDialog.close();
+        window.clearTimeout(shareToastTimer);
+        shareToast.classList.remove('is-sent');
+        shareToastIcon.className = 'ti ti-loader-2 committee-note-toast-icon';
+        shareToastLabel.textContent = 'Préparation du partage…';
+        shareToastProgress.style.transition = 'none';
+        shareToastProgress.style.width = '0';
+        shareToast.hidden = false;
+        void shareToastProgress.offsetWidth;
+        shareToastProgress.style.transition = '';
+        shareToastProgress.style.width = '100%';
+        const shareDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 3000;
+        shareToastTimer = window.setTimeout(() => {
+          shareToast.classList.add('is-sent');
+          shareToastIcon.className = 'ti ti-circle-check committee-note-toast-icon';
+          shareToastLabel.textContent = `Partage prêt pour ${address}`;
+          shareToastTimer = window.setTimeout(() => { shareToast.hidden = true; }, 2200);
+        }, shareDuration);
+      });
+      document.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-save-news]');
+        if (button) {
+          const isSaved = button.getAttribute('aria-pressed') === 'true';
+          const nextSavedState = !isSaved;
+          const newsId = button.closest('.news-test-card[data-news-id]')?.dataset.newsId;
+          const cardSaves = newsId
+            ? [...document.querySelectorAll('.news-test-card[data-news-id]')]
+              .filter((card) => card.dataset.newsId === newsId)
+              .flatMap((card) => [...card.querySelectorAll('[data-save-news]')])
+            : button.closest('.news-test-card')?.querySelectorAll('[data-save-news]');
+          (cardSaves || document.querySelectorAll('[data-save-news]')).forEach((saveButton) => {
+            saveButton.setAttribute('aria-pressed', String(nextSavedState));
+            saveButton.setAttribute('aria-label', nextSavedState ? 'Enregistré' : 'Enregistrer');
+            saveButton.title = nextSavedState ? 'Enregistré' : 'Enregistrer';
+          });
+        }
+      });
+
+      const enterDashboard = () => {
+        const shouldAnimate = dashboard.hidden;
+        welcomePanel.hidden = true;
+        personalizationPanel.hidden = true;
+        dashboard.hidden = false;
+        topbar.classList.add('is-app-active');
+        mainShell.classList.add('is-dashboard');
+        if (shouldAnimate) {
+          dashboard.classList.remove('is-entering');
+          void dashboard.offsetWidth;
+          dashboard.classList.add('is-entering');
+        }
+      };
+
+      const activateSidebar = (section, sector) => {
+        sidebarLinks.forEach((link) => {
+          link.classList.remove('is-active');
+          link.removeAttribute('aria-current');
+        });
+        const aiSidebarLink = document.querySelector('[data-open-ai-preferences]');
+        aiSidebarLink.classList.remove('is-active');
+        aiSidebarLink.removeAttribute('aria-current');
+        sidebarSublinks.forEach((link) => link.classList.remove('is-active'));
+        const activeLink = section === 'ai'
+          ? aiSidebarLink
+          : section === 'home'
+            ? document.querySelector('[data-sidebar-home]')
+          : section === 'news'
+            ? sidebarNewsToggle
+            : document.querySelector(`[data-sidebar-view="${section}"]`);
+        activeLink?.classList.add('is-active');
+        activeLink?.setAttribute('aria-current', 'page');
+        if (sector) {
+          document.querySelector(`.sidebar-sublink[data-sector-filter="${sector}"]`)?.classList.add('is-active');
+        }
+      };
+
+      const showEmptyView = (title, section = title, sector) => {
+        enterDashboard();
+        signalBoard.hidden = true;
+        signalBoard.classList.remove('visible');
+        trendingSection.hidden = true;
+        alertView.hidden = true;
+        magazineView.hidden = true;
+        aiView.hidden = true;
+        inlineNewsDetail.hidden = true;
+        newsPageView.hidden = true;
+        emptyTitle.textContent = title;
+        testCardList.hidden = section !== 'home';
+        emptyView.hidden = false;
+        emptyView.classList.remove('is-entering');
+        void emptyView.offsetWidth;
+        emptyView.classList.add('is-entering');
+        activateSidebar(section, sector);
+      };
+
+      const showTrendingView = () => {
+        enterDashboard();
+        signalBoard.hidden = true;
+        signalBoard.classList.remove('visible');
+        aiView.hidden = true;
+        alertView.hidden = true;
+        magazineView.hidden = true;
+        inlineNewsDetail.hidden = true;
+        newsPageView.hidden = true;
+        emptyView.hidden = true;
+        trendingSection.hidden = false;
+        activateSidebar('En tendance');
+        const sectionTop = trendingSection.getBoundingClientRect().top + window.scrollY;
+        const headerBottom = topbar.getBoundingClientRect().bottom;
+        window.scrollTo({
+          top: Math.max(0, sectionTop - headerBottom - 16),
+          behavior: 'smooth'
+        });
+      };
+
+      const showAiView = () => {
+        enterDashboard();
+        signalBoard.hidden = true;
+        signalBoard.classList.remove('visible');
+        inlineNewsDetail.hidden = true;
+        newsPageView.hidden = true;
+        emptyView.hidden = true;
+        trendingSection.hidden = true;
+        alertView.hidden = true;
+        magazineView.hidden = true;
+        aiView.hidden = false;
+        searchInput.value = '';
+        searchClear.hidden = true;
+        searchEmpty.hidden = true;
+        activateSidebar('ai');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      const showMagazineView = () => {
+        enterDashboard();
+        signalBoard.hidden = true;
+        signalBoard.classList.remove('visible');
+        aiView.hidden = true;
+        alertView.hidden = true;
+        inlineNewsDetail.hidden = true;
+        newsPageView.hidden = true;
+        emptyView.hidden = true;
+        trendingSection.hidden = true;
+        magazineView.hidden = false;
+        magazineView.classList.remove('is-entering');
+        void magazineView.offsetWidth;
+        magazineView.classList.add('is-entering');
+        activateSidebar('Magazine');
+        magazineView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      const showBoard = (sector, shouldScroll = true) => {
+        enterDashboard();
+        emptyView.hidden = true;
+        inlineNewsDetail.hidden = true;
+        magazineView.hidden = true;
+        aiView.hidden = true;
+        alertView.hidden = true;
+        signalBoard.hidden = false;
+        signalBoard.classList.add('visible');
+        searchInput.value = '';
+        trendingSection.hidden = true;
+        searchClear.hidden = true;
+        searchEmpty.hidden = true;
+        testCardPreview.hidden = Boolean(sector);
+        let visibleIndex = 0;
+        newsCards.forEach((card) => {
+          card.hidden = Boolean(sector) && card.dataset.sector !== sector;
+          if (!card.hidden) {
+            card.style.setProperty('--card-order', visibleIndex);
+            visibleIndex += 1;
+          }
+        });
+        updateNewsDateGroupVisibility();
+        boardTitle.textContent = sector ? `Actualités ${sector}` : 'Signaux stratégiques';
+        boardTitle.textContent = sector ? `Actualités ${sector}` : 'Toutes les actualités';
+        boardLabel.textContent = sector ? 'Veille sectorielle' : 'Veille stratégique';
+        activateSidebar(sector ? 'news' : 'home', sector);
+        boardGrid.classList.remove('is-transitioning');
+        void boardGrid.offsetWidth;
+        boardGrid.classList.add('is-transitioning');
+        if (shouldScroll) signalBoard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      const applySearch = (value) => {
+        const query = value.trim().toLocaleLowerCase();
+        trendingSection.hidden = true;
+        alertView.hidden = true;
+        magazineView.hidden = true;
+        aiView.hidden = true;
+        testCardPreview.hidden = Boolean(query);
+        emptyView.hidden = true;
+        inlineNewsDetail.hidden = true;
+        signalBoard.hidden = false;
+        signalBoard.classList.add('visible');
+        let visibleIndex = 0;
+        newsCards.forEach((card) => {
+          card.hidden = !card.textContent.toLocaleLowerCase().includes(query);
+          if (!card.hidden) {
+            card.style.setProperty('--card-order', visibleIndex);
+            visibleIndex += 1;
+          }
+        });
+        updateNewsDateGroupVisibility();
+        boardTitle.textContent = query ? 'Résultats de recherche' : 'Toutes les actualités';
+        boardLabel.textContent = query ? 'Recherche dans les sources' : 'Veille stratégique';
+        searchEmpty.hidden = visibleIndex > 0;
+      };
+
+      searchInput.value = new URLSearchParams(window.location.search).get('q') || '';
+      searchClear.hidden = !searchInput.value;
+      searchInput.addEventListener('input', () => {
+        if (searchInput.value.trim()) enterDashboard();
+        searchClear.hidden = !searchInput.value;
+        const shouldReveal = signalBoard.hidden && searchInput.value.trim();
+        applySearch(searchInput.value);
+        if (shouldReveal) {
+          signalBoard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchClear.hidden = true;
+        applySearch('');
+        searchInput.focus();
+      });
+      document.querySelector('[data-launch-app]').addEventListener('click', (event) => {
+        event.preventDefault();
+        sidebarNewsMenu.classList.remove('is-open');
+        sidebarNewsToggle.setAttribute('aria-expanded', 'false');
+        showBoard();
+      });
+
+      document.querySelector('[data-home-link]').addEventListener('click', (event) => {
+        event.preventDefault();
+        sidebarNewsMenu.classList.remove('is-open');
+        sidebarNewsToggle.setAttribute('aria-expanded', 'false');
+        window.history.replaceState(null, '', window.location.pathname);
+        showAiView();
+      });
+
+      document.querySelector('[data-sidebar-home]').addEventListener('click', () => {
+        sidebarNewsMenu.classList.remove('is-open');
+        sidebarNewsToggle.setAttribute('aria-expanded', 'false');
+        showBoard();
+      });
+
+      sidebarNewsToggle.addEventListener('click', () => {
+        enterDashboard();
+        const isOpen = sidebarNewsMenu.classList.toggle('is-open');
+        sidebarNewsToggle.setAttribute('aria-expanded', String(isOpen));
+        showBoard();
+        activateSidebar('news');
+      });
+
+      document.querySelectorAll('[data-sidebar-view]').forEach((link) => {
+        link.addEventListener('click', () => {
+          sidebarNewsMenu.classList.remove('is-open');
+          sidebarNewsToggle.setAttribute('aria-expanded', 'false');
+          if (link.dataset.sidebarView === 'En tendance') {
+            showTrendingView();
+            return;
+          }
+          if (link.dataset.sidebarView === 'Magazine') {
+            showMagazineView();
+            return;
+          }
+            if (link.dataset.sidebarView === 'Alertes') {
+              enterDashboard();
+              signalBoard.hidden = true;
+              signalBoard.classList.remove('visible');
+              trendingSection.hidden = true;
+              magazineView.hidden = true;
+              aiView.hidden = true;
+              inlineNewsDetail.hidden = true;
+              newsPageView.hidden = true;
+              emptyView.hidden = true;
+              alertView.hidden = false;
+              renderAssignedAlerts();
+              activateSidebar('Alertes');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              return;
+            }
+          showEmptyView(link.dataset.sidebarView);
+        });
+      });
+
+        alertList.addEventListener('click', (event) => {
+          const link = event.target.closest('[data-alert-news]');
+          if (!link) return;
+          const item = window.newsItems[link.dataset.alertNews];
+          if (!item) return;
+          event.preventDefault();
+          const sourceCard = [...newsCards].find((card) => card.dataset.newsId === item.id);
+          showNewsPage(item, sourceCard);
+        });
+        alertList.addEventListener('click', (event) => {
+          if (event.target.closest('a, button')) return;
+          const card = event.target.closest('.alert-card[data-alert-id]');
+          const articleId = card?.querySelector('[data-alert-news]')?.dataset.alertNews;
+          const item = articleId ? window.newsItems[articleId] : null;
+          if (!item) return;
+          const sourceCard = [...newsCards].find((newsCard) => newsCard.dataset.newsId === item.id);
+          showNewsPage(item, sourceCard);
+        });
+        alertList.addEventListener('keydown', (event) => {
+          if (!['Enter', ' '].includes(event.key) || event.target !== event.target.closest('.alert-card')) return;
+          const card = event.target.closest('.alert-card[data-alert-id]');
+          const articleId = card?.querySelector('[data-alert-news]')?.dataset.alertNews;
+          const item = articleId ? window.newsItems[articleId] : null;
+          if (!item) return;
+          event.preventDefault();
+          const sourceCard = [...newsCards].find((newsCard) => newsCard.dataset.newsId === item.id);
+          showNewsPage(item, sourceCard);
+        });
+
+      menuToggle.addEventListener('click', () => {
+        const isOpen = sectorMenu.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      document.querySelectorAll('[data-sector-filter]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          showBoard(link.dataset.sectorFilter);
+          sidebarNewsMenu.classList.add('is-open');
+          sidebarNewsToggle.setAttribute('aria-expanded', 'true');
+          activateSidebar('news', link.dataset.sectorFilter);
+          sectorMenu.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!sectorMenu.contains(event.target)) {
+          sectorMenu.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      newsCards.forEach((card) => {
+        const openNews = () => {
+          showNewsPage(window.newsItems[card.dataset.newsId], card);
+        };
+
+        card.querySelectorAll('[data-open-news]').forEach((button) => button.addEventListener('click', openNews));
+      });
+
+      const openCard = (card) => {
+        const item = window.newsItems[card.dataset.newsId];
+        showNewsPage(item, item ? card : undefined);
+      };
+
+      document.querySelector('[data-trending-grid]').addEventListener('click', (event) => {
+        const trendingCard = event.target.closest('[data-trending-id]');
+        if (!trendingCard) return;
+        event.preventDefault();
+        const sourceCard = [...newsCards].find((card) => card.dataset.newsId === trendingCard.dataset.trendingId);
+        showNewsPage(window.newsItems[trendingCard.dataset.trendingId], sourceCard);
+      });
+
+      newsGrid.addEventListener('click', (event) => {
+        if (event.target.closest('button, a, input, select, textarea')) return;
+        const card = event.target.closest('.news-test-card');
+        if (card) openCard(card);
+      });
+
+      newsGrid.addEventListener('keydown', (event) => {
+        if (!['Enter', ' '].includes(event.key) || event.target.closest('button, a, input, select, textarea')) return;
+        const card = event.target.closest('.news-test-card[tabindex="0"]');
+        if (!card) return;
+        event.preventDefault();
+        openCard(card);
+      });
+
+      document.querySelector('[data-close-news]').addEventListener('click', (event) => {
+        event.preventDefault();
+        signalBoard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      showCardsButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          enterDashboard();
+          showBoard();
+          sidebarNewsMenu.classList.remove('is-open');
+          sidebarNewsToggle.setAttribute('aria-expanded', 'false');
+          activateSidebar('home');
+        });
+      });
+    </script>
+  </body>
+</html>

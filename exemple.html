@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VeiLCL – Carte actualité</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+  :root{
+    --canvas:#FBFAFD; --card:#fff; --border:#E6E1EE;
+    --ink:#241B33; --ink-2:#6B6280; --ink-3:#4A4260;
+    --p900:#2A1145; --p700:#4B1E78; --p500:#7A47B8; --p300:#CFC3E6; --p100:#F1EAFA; --p50:#F6F2FB;
+    --y:#FFC72C; --y-tint:#FFF4CF; --y-ink:#4A3A00;
+    --high:#C8322E; --high-bg:#FBE6E5; --high-ink:#8E2320;
+    --med:#D9822B;
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:32px 16px;background:var(--canvas);color:var(--ink);
+       font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+  .card{max-width:1100px;margin:0 auto;background:var(--card);border:1px solid var(--border);
+        border-radius:var(--radius);padding:24px 28px}
+
+  /* tags */
+  .tag{font-size:12px;font-weight:500;padding:3px 11px;border-radius:999px;white-space:nowrap}
+  .tag--high{background:var(--high-bg);color:var(--high-ink)}
+  .tag--topic{background:var(--p100);color:var(--p700)}
+  .tag--ctx{background:#F6F3FA;color:var(--ink-3)}
+  .tag--ai{background:var(--p100);color:var(--p700)}
+
+  /* header */
+  .meta{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .bar{flex:1;height:6px;border-radius:3px;background:#F1EEF6;overflow:hidden}
+  .bar>span{display:block;height:100%;width:82%;border-radius:3px;background:#E5605E}
+  .meta small{font-size:13px;color:var(--ink-2);white-space:nowrap}
+  .title-row{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px}
+  h1{flex:1;margin:0;font-size:28px;line-height:1.25;font-weight:600;color:var(--p900)}
+  .title-row i{font-size:22px;color:var(--p700);cursor:pointer}
+
+  .why{background:var(--y-tint);border-radius:10px;padding:10px 14px;font-size:15px;color:var(--y-ink);margin-bottom:12px}
+  .why b{color:var(--p700);font-weight:600}
+  .summary{margin:0 0 24px;font-size:15px;color:var(--ink-2)}
+  .link{color:var(--p700);font-weight:500;cursor:pointer}
+
+  /* sections */
+  .section{border-top:1px solid var(--border);padding-top:20px}
+  .section + .section{margin-top:24px}
+  .section-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .icon-chip{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+  .icon-chip--dark{background:var(--p700);color:var(--y)}
+  .icon-chip--light{background:var(--p100);color:var(--p700)}
+  .section-head h2{margin:0;font-size:18px;font-weight:600;color:var(--p900)}
+  .spacer{flex:1}
+  .conf{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-2)}
+  .conf .track{width:72px;height:6px;border-radius:3px;background:#F1EEF6;overflow:hidden}
+  .conf .track>span{display:block;width:74%;height:100%;background:var(--p500)}
+  .conf b{color:var(--p700);font-weight:600;font-size:13px}
+
+  .context{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px;font-size:12px;color:var(--ink-2)}
+  .obvious{display:flex;align-items:center;gap:10px;background:#F8F7FA;border-radius:10px;
+           padding:9px 14px;margin-bottom:18px;font-size:14px;color:var(--ink-2)}
+  .obvious b{color:var(--ink-3);font-weight:600}
+  .lead{font-size:14px;font-weight:600;color:var(--p700);margin-bottom:12px}
+
+  /* horizons */
+  .horizons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .hz{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .hz .dot{width:11px;height:11px;border-radius:50%;background:var(--p700);border:2px solid #fff;box-shadow:0 0 0 1px var(--p700)}
+  .hz b{font-size:13px;font-weight:600;color:var(--p700);white-space:nowrap}
+  .hz .line{flex:1;border-top:2px solid var(--p300)}
+  .col{display:flex;flex-direction:column;gap:12px}
+
+  .effect{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;
+          display:flex;flex-direction:column;gap:10px}
+  .effect h3{margin:0;font-size:15px;font-weight:600;line-height:1.35}
+  .effect p{margin:0;font-size:13px;color:var(--ink-2)}
+  .signal{display:flex;gap:8px;background:var(--p50);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--p700)}
+  .signal i{font-size:15px;margin-top:1px}
+  .prob{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-2)}
+  .prob .pip{width:18px;height:5px;border-radius:3px;background:var(--border)}
+  .prob .pip.on{background:var(--p500)}
+
+  .foot-note{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:12px;color:var(--ink-2);flex-wrap:wrap}
+
+  /* recommendations */
+  .reco{display:flex;align-items:center;gap:14px;padding:12px 0;border-top:1px solid #EEEAF4;font-size:14px}
+  .reco:first-of-type{border-top:none}
+  .prio{width:10px;height:10px;border-radius:50%;flex:none}
+  .prio--high{background:var(--high)} .prio--med{background:var(--med)}
+  .reco .txt{flex:1}
+  .dept{font-size:12px;font-weight:500;padding:3px 10px;border-radius:6px;background:var(--p100);color:var(--p700);white-space:nowrap}
+  .due{font-size:12px;color:var(--ink-2);white-space:nowrap;min-width:110px;text-align:right}
+  .actions{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+  .btn{font:inherit;font-size:13px;padding:8px 16px;border-radius:8px;border:1px solid #D9D2E6;background:#fff;color:var(--p700);cursor:pointer}
+  .btn:hover{background:var(--p50)}
+  .btn--primary{background:var(--y);border-color:var(--y);color:var(--p900);font-weight:600}
+  .btn--primary:hover{background:#F5BB14}
+
+  @media (max-width:820px){
+    .horizons{grid-template-columns:1fr}
+    .reco{flex-wrap:wrap}
+    h1{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<article class="card">
+
+  <div class="meta">
+    <span class="tag tag--high">High impact</span>
+    <span class="tag tag--topic">Crédit immobilier</span>
+    <div class="bar"><span></span></div>
+    <small>3 sources · 2h ago</small>
+  </div>
+
+  <div class="title-row">
+    <h1>La concurrence réduit son taux hypothécaire sur 20 ans</h1>
+    <i class="ti ti-send" aria-label="Partager"></i>
+    <i class="ti ti-bookmark" aria-label="Enregistrer"></i>
+  </div>
+
+  <div class="why"><b>Pourquoi c'est important pour nous :</b> notre offre à 20 ans se situe désormais 25 points de base au-dessus du marché.</div>
+
+  <p class="summary">L'écart de taux peut peser sur la compétitivité des offres et la conversion des dossiers. Un concurrent direct vient d'afficher un taux sur 20 ans inférieur de 25 points de base à notre grille actuelle… <span class="link">Lire la suite</span></p>
+
+  <!-- ============ EFFETS SECONDAIRES ============ -->
+  <section class="section">
+    <div class="section-head">
+      <div class="icon-chip icon-chip--dark"><i class="ti ti-topology-star-3"></i></div>
+      <h2>Effets secondaires</h2>
+      <span class="tag tag--ai">Analyse IA</span>
+      <span class="spacer"></span>
+      <div class="conf">Confiance de l'analyse <div class="track"><span></span></div><b>74 %</b></div>
+    </div>
+
+    <div class="context">
+      Contexte
+      <span class="tag tag--ctx">Taux directeurs stables</span>
+      <span class="tag tag--ctx">Reprise fragile de l'immobilier</span>
+      <span class="tag tag--ctx">Courtage très actif</span>
+    </div>
+
+    <div class="obvious">
+      <i class="ti ti-eye-off"></i>
+      <span><b>Lecture immédiate :</b> le concurrent cherche à gagner des parts de marché sur le crédit immobilier.</span>
+    </div>
+
+    <div class="lead">Ce à quoi on ne pense pas forcément</div>
+
+    <div class="horizons">
+
+      <div>
+        <div class="hz"><span class="dot"></span><b>Court terme · 0–3 mois</b><span class="line"></span></div>
+        <div class="col">
+          <div class="effect">
+            <h3>Les courtiers réorientent les flux</h3>
+            <p>Les nouveaux dossiers migrent vers l'offre la moins chère, ce qui renforce le pouvoir de négociation des courtiers.</p>
+            <div class="signal"><i class="ti ti-radar-2"></i><span>Baisse du taux de transformation chez nos 10 courtiers principaux</span></div>
+            <div class="prob"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span>Probable</div>
+          </div>
+          <div class="effect">
+            <h3>Départ des meilleurs profils</h3>
+            <p>Les revenus stables partent en premier. Le risque moyen du portefeuille restant monte (antisélection).</p>
+            <div class="signal"><i class="ti ti-radar-2"></i><span>Évolution du score moyen des dossiers acceptés</span></div>
+            <div class="prob"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span>Possible</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="hz"><span class="dot"></span><b>Moyen terme · 3–12 mois</b><span class="line"></span></div>
+        <div class="col">
+          <div class="effect">
+            <h3>Compensation de la marge perdue</h3>
+            <p>Le concurrent récupère la marge via l'assurance emprunteur, la domiciliation des revenus et les packages.</p>
+            <div class="signal"><i class="ti ti-radar-2"></i><span>Nouvelles conditions de domiciliation ou offres liées</span></div>
+            <div class="prob"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span>Probable</div>
+          </div>
+          <div class="effect">
+            <h3>Rachats de crédit de nos clients</h3>
+            <p>Nos clients existants comparent et renégocient. Les indemnités de remboursement anticipé ne suffisent pas à les retenir.</p>
+            <div class="signal"><i class="ti ti-radar-2"></i><span>Hausse des demandes de renégociation</span></div>
+            <div class="prob"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span>Possible</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="hz"><span class="dot"></span><b>Long terme · 12 mois+</b><span class="line"></span></div>
+        <div class="col">
+          <div class="effect">
+            <h3>Alignement en chaîne du marché</h3>
+            <p>Les autres banques s'alignent, la guerre des prix s'installe et le PNB crédit se compresse durablement.</p>
+            <div class="signal"><i class="ti ti-radar-2"></i><span>Baisses de taux chez 2 autres réseaux</span></div>
+            <div class="prob"><span class="pip on"></span><span class="pip"></span><span class="pip"></span>Peu probable</div>
+          </div>
+          <div class="effect">
+            <h3>Besoin de refinancement moins cher</h3>
+            <p>Pour tenir ce prix, le concurrent pourrait recourir aux obligations sécurisées ou à la titrisation.</p>
+            <div class="signal"><i class="ti ti-radar-2"></i><span>Émission de covered bonds annoncée</span></div>
+            <div class="prob"><span class="pip on"></span><span class="pip"></span><span class="pip"></span>Peu probable</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="foot-note">
+      <i class="ti ti-info-circle"></i>
+      <span>Hypothèse : la baisse se maintient au moins 3 mois. Analyse invalidée si le concurrent revient sur son taux.</span>
+      <span class="spacer"></span>
+      <span class="link">Voir les sources</span>
+    </div>
+  </section>
+
+  <!-- ============ RECOMMANDATIONS STRATÉGIQUES ============ -->
+  <section class="section">
+    <div class="section-head">
+      <div class="icon-chip icon-chip--light"><i class="ti ti-target-arrow"></i></div>
+      <h2>Recommandations stratégiques</h2>
+      <span class="spacer"></span>
+      <small style="font-size:12px;color:var(--ink-2)">Pour : Retail · Risques</small>
+    </div>
+
+    <div class="reco">
+      <span class="prio prio--high"></span>
+      <span class="txt">Simuler un alignement partiel sur le 20 ans pour les profils à revenus stables</span>
+      <span class="dept">Pricing</span><span class="due">Sous 2 semaines</span>
+    </div>
+    <div class="reco">
+      <span class="prio prio--med"></span>
+      <span class="txt">Sécuriser la relation avec les courtiers principaux avant toute renégociation</span>
+      <span class="dept">Réseau courtage</span><span class="due">Sous 1 mois</span>
+    </div>
+    <div class="reco">
+      <span class="prio prio--med"></span>
+      <span class="txt">Suivre le profil des dossiers perdus pour détecter l'antisélection</span>
+      <span class="dept">Risques</span><span class="due">Suivi mensuel</span>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn--primary">Préparer une note pour le comité</button>
+      <button class="btn">Assigner</button>
+      <button class="btn">Discuter</button>
+    </div>
+  </section>
+
+</article>
+
+</body>
+</html>
